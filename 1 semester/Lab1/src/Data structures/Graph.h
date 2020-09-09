@@ -7,6 +7,9 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
+#include <queue>
+
 
 
 template <typename V, typename E>
@@ -14,12 +17,10 @@ class Graph {
 
 private:
 
-    //
-
     //private algorithms for corresponding methods
-    virtual void dfs(const V& v) = 0;
-    virtual void bfs(const V& v) = 0;
-    virtual void find_cycle(const V& cur, const V& prev, const V& prev_prev, int& cycles) = 0;
+    virtual void dfs(const int& v, bool* visited) = 0;
+    virtual void bfs(int& v, bool* visited) = 0;
+    virtual void find_cycle(const int& cur, const int& prev, const int& prev_prev, int& cycles, int* visited) = 0;
 
 
 public:
@@ -28,18 +29,27 @@ public:
     Graph() = default;
     virtual ~Graph() = default;
 
+    //getters
+    virtual bool empty() = 0;
+    virtual std::vector<V> _vertices() = 0;
+    virtual int _edges() = 0;
+    virtual bool _directed() = 0;
+    virtual bool _weighted() = 0;
+
     //public methods
     virtual void add_vertex(const V& vertex) = 0;
     virtual void delete_vertex(const V& vertex) = 0;
     virtual void add_edge(const V& from, const V& to, const E& edge) = 0;
     virtual void delete_edge(const V& from, const V& to) = 0;
+    virtual void clear() = 0;
+    virtual void print() = 0;
 
     virtual int dfs() = 0;
     virtual int bfs() = 0;
     virtual int acyclicity() = 0;
-   // virtual std::vector<V> dijkstra_distance(const V& from, const V& to) = 0;
+    virtual std::vector<int> dijkstra_distance(const V& from, const V& to) = 0;
 
-};
+}; //class Graph
 
 
 #endif //LAB1_GRAPH_H
