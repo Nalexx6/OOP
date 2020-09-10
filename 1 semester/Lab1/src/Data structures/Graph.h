@@ -39,7 +39,7 @@ public:
     //public methods
     virtual void add_vertex(const V& vertex) = 0;
     virtual void delete_vertex(const V& vertex) = 0;
-    virtual void add_edge(const V& from, const V& to, const E& edge) = 0;
+    virtual void add_edge(const V& from, const V& to, E edge) = 0;
     virtual void delete_edge(const V& from, const V& to) = 0;
     virtual void clear() = 0;
     virtual void print() = 0;

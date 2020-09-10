@@ -28,7 +28,7 @@ private:
 
         for(int i = 0; i < this->vertices.size(); i++){
             if(this->adj[v][i] != nullptr){
-                dfs(i);
+                dfs(i, visited);
             }
         }
 
@@ -70,7 +70,7 @@ private:
 
         for(int i = 0; i < this->vertices.size(); i++){
             if(this->adj[cur][i] != nullptr) {
-                find_cycle(i, cur, prev, cycles);
+                find_cycle(i, cur, prev, cycles, visited);
             }
 
         }
@@ -80,16 +80,23 @@ private:
     }
     void find_distance(const int& from, std::vector<int>* distances, bool* visited, int* costs, int& sum_visited){
 
-        int min = 0;
+        int min = from;
 
         while(sum_visited < this->vertices.size()) {
+
+            for(int i = 0; i < this->vertices.size(); i++){
+                if(!visited[i]){
+                    min = i;
+                    break;
+                }
+            }
 
             for (int i = 0; i < this->vertices.size(); i++) {
                 if ((costs[i] < costs[min] && !visited[i]) || (i == from && !visited[from])) {
                     min = i;
                 }
             }
-
+//            std::cout<<min<<"\n";
             visited[min] = true;
             sum_visited++;
 
@@ -101,7 +108,7 @@ private:
 
                         distances[i].clear();
                         for(auto j: distances[min])
-                            distances[i].push_back(j);
+                            distances[i].emplace_back(j);
 
                         distances[i].emplace_back(min);
 
@@ -142,12 +149,14 @@ public:
     void delete_vertex(const V& vertex){
 
     }
-    void add_edge(const V& from, const V& to, const E& edge){
+    void add_edge(const V& from, const V& to, E edge){
 
-        this->adj[from][to] = edge;
+        E* _edge = &edge;
+
+        this->adj[from][to] = _edge;
 
         if(!directed)
-            this->adj[to][from] = edge;
+            this->adj[to][from] = _edge;
 
         this->edges++;
 
@@ -163,8 +172,34 @@ public:
     }
     void clear(){
 
+        this->vertices.clear();
+        this->edges = 0;
+        for(auto i: this->adj){
+//            for(auto j: i){
+//                delete i;
+//            }
+            i.clear();
+        }
+        this->adj.clear();
+
     }
     void print(){
+
+        std::cout<<"   ";
+        for(int i = 0; i < this->vertices.size(); i++){
+            std::cout<<i<<" ";
+        }
+        std::cout<<"\n";
+        for(int i = 0; i < this->vertices.size(); i++){
+            std::cout<<i<<": ";
+            for(int j = 0; j < this->vertices.size(); j++){
+                if(adj[i][j] != nullptr)
+                    std::cout<<"+ ";
+                else
+                    std::cout<<"N ";
+            }
+            std::cout<<"\n";
+        }
 
     }
 
@@ -232,17 +267,18 @@ public:
         int* costs = new int [this->vertices.size()];
         int sum_visited = 0;
 
-        for(int i = 0; i < vertices.size(); i++){
+        for(int i = 0; i < this->vertices.size(); i++){
             visited[i] = false;
             costs[i] = -1;
         }
 
         dfs(from, visited);//defines set of vertices, which are in the same connectivity component as the vertex "from"
 
-        for(int i = 0; i < vertices.size(); i++){
+        for(int i = 0; i < this->vertices.size(); i++){
             if(!visited[i]){
                 visited[i] = true;
                 sum_visited++;
+
             }
             else{
                 visited[i] = false;
@@ -251,10 +287,9 @@ public:
             }
         }
 
-        if(costs[to] == -1)
-            return distances[from];
-
         costs[from] = 0;
+        if(costs[to] == -1)
+            return distances[to];
 
         find_distance(from, distances, visited, costs, sum_visited);
 
