@@ -21,6 +21,7 @@ private:
     virtual void dfs(const int& v, bool* visited) = 0;
     virtual void bfs(int& v, bool* visited) = 0;
     virtual void find_cycle(const int& cur, const int& prev, const int& prev_prev, int& cycles, int* visited) = 0;
+    virtual void find_distance(const int& from, std::vector<int>* distances, bool* visited, int* costs, int& sum_visited) = 0;
 
 
 public:

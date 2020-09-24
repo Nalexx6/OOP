@@ -148,6 +148,24 @@ public:
     }
     void delete_vertex(const V& vertex){
 
+        int index;
+        for(std::size_t i = 0; i < vertices.size(); i++){
+
+            if(vertices[i] == vertex){
+               vertices.erase(vertices.begin() + i);
+               index = i;
+                break;
+
+            }
+        }
+
+        adj.erase(adj.begin() + index);
+
+        for(auto& j: adj){
+            j.erase(j.begin() + index);
+        }
+
+
     }
     void add_edge(const V& from, const V& to, E edge){
 
