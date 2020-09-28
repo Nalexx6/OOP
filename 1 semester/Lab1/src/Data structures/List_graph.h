@@ -184,7 +184,7 @@ public:
         }
 
     }
-    void add_edge(const V& from, const V& to, E edge){
+    void add_edge(const int& from, const int& to, E edge){
 
 
         this->adj[from].emplace_back(Edge(to, edge));
@@ -198,7 +198,7 @@ public:
         edges++;
 
     }
-    void delete_edge(const V& from, const V& to){
+    void delete_edge(const int& from, const int& to){
 
         for(std::size_t i = 0; i < adj[from].size(); i++){
 
@@ -304,7 +304,7 @@ public:
         return cycles;
 
     }
-    std::vector<int> dijkstra_distance(const V& from, const V& to){
+    std::vector<int> dijkstra_distance(const int& from, const int& to){
 
         auto* distances = new std::vector <int> [this->vertices.size()];
 

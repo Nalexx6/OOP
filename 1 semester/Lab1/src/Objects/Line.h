@@ -42,5 +42,7 @@ public:
 
 };
 
+bool operator == (Line a, Line b);
+
 
 #endif //LAB1_LINE_H

@@ -7,7 +7,7 @@
 
 
 int main() {
-//    List_graph<int, int> graph(false, false);
+    List_graph<Circle, Line> graph(false, false);
 //
 //    graph.add_vertex(1);
 //    graph.add_vertex(2);
@@ -32,7 +32,7 @@ int main() {
     auto* circle1 = new Circle(0, 0, 1);
     Line* line1 = new Line(1, 1, -1);
     Line* line2 = new Line(-3, 1, -1);
-    auto* circle2 = new Circle(0.5, 0.5, sqrt(2)/ 2);
+    auto* circle2 = new Circle(1, 1, sqrt(2)/ 2);
 
 //    std::vector<Functions::Point> res = Functions::intersection(*line1, *line2);
 //
@@ -50,7 +50,7 @@ int main() {
 //
 //    std::cout<< "a: " << res._a() << "\tb: " << res._b() << "\tc: " << res._c() << std::endl;
 
-    Line res1 = Functions::inversion(*circle1, *circle2);
+    Circle res1 = Functions::inversion_c(*circle1, *circle2);
 
     std::cout<< "a: " << res1._a() << "\tb: " << res1._b() << "\tc: " << res1._c() << std::endl;
 

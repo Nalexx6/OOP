@@ -229,6 +229,19 @@ Line Functions::inversion(Circle &circle, Circle &to_invert) {
 
 }
 
+Circle Functions::inversion_c(Circle &circle, Circle &to_invert) {
+
+    double norm = pow(circle._c(), 2) / (pow(to_invert._a() - circle._a(), 2) + pow(to_invert._b() - circle._b(), 2) - pow(to_invert._c(), 2));
+
+    double x = circle._a() + norm * (to_invert._a() - circle._a());
+    double y = circle._b() + norm * (to_invert._b() - circle._b());
+
+    double r = std::abs(norm) * to_invert._c();
+
+    return *new Circle(x, y, r);
+
+}
+
 
 
 

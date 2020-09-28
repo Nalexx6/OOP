@@ -40,15 +40,15 @@ public:
     //public methods
     virtual void add_vertex(const V& vertex) = 0;
     virtual void delete_vertex(const V& vertex) = 0;
-    virtual void add_edge(const V& from, const V& to, E edge) = 0;
-    virtual void delete_edge(const V& from, const V& to) = 0;
+    virtual void add_edge(const int& from, const int& to, E edge) = 0;
+    virtual void delete_edge(const int& from, const int& to) = 0;
     virtual void clear() = 0;
     virtual void print() = 0;
 
     virtual int dfs() = 0;
     virtual int bfs() = 0;
     virtual int acyclicity() = 0;
-    virtual std::vector<int> dijkstra_distance(const V& from, const V& to) = 0;
+    virtual std::vector<int> dijkstra_distance(const int& from, const int& to) = 0;
 
 }; //class Graph
 

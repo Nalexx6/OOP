@@ -38,5 +38,6 @@ public:
 
 };
 
+bool operator == (Circle a, Circle b);
 
 #endif //LAB1_CIRCLE_H
