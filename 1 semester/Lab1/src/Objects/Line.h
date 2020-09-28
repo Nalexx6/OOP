@@ -12,14 +12,14 @@ class Line : public Figure {
 private:
 
     //variables
-
+    //line corresponds to equation Ax + By + C = 0, variables are corresponding coefficients
     double a;
     double b;
     double c;
 
 public:
 
-
+    //constructor, destructor
 
     Line() = default;
     Line(const double& a, const double& b, const double& c){
@@ -38,11 +38,7 @@ public:
     double _b() override { return this->b; }
     double _c() override { return this->c; }
 
-    //setters
 
-//    void _a(const double& a) override { this->a = a;}
-//    void _b(const double& b) override { this->b = b;}
-//    void _c(const double& c) override { this->c = c;}
 
 };
 

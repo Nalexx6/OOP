@@ -10,9 +10,9 @@
 class Circle : public Figure {
 
     //variables
-    double x0{};
-    double y0{};
-    double radius{};
+    double x0{};//x coordinate of center of circle
+    double y0{};//y coordinate of center of circle
+    double radius{};//radius of circle
 
 public:
 
@@ -34,10 +34,6 @@ public:
     double _a() override { return this->x0; }
     double _b() override { return this->y0; }
     double _c() override { return this->radius; }
-
-    //setters
-
-
 
 
 };

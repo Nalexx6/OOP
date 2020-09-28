@@ -106,41 +106,41 @@ Line Functions::build_line(Functions::Point &a, Functions::Point &b) {
 
 }
 
-Line Functions::sym_display(Line &line1, Line &line2) {
+Line Functions::sym_display(Line &line, Line &to_sym) {
 
 
 
-    std::vector points = intersection(line1, line2);
+    std::vector points = intersection(line, to_sym);
 
 
     if(points.empty()){
 
-        return *new Line(line2._a(), line2._b(), 2 * line1._c() - line2._c());
+        return *new Line(to_sym._a(), to_sym._b(), 2 * to_sym._c() - to_sym._c());
 
     }
 
-    if(line1._a() == 0 || line1._b() == 0){
+    if(line._a() == 0 || line._b() == 0){
 
-        return *new Line(-line2._a(), line2._b(), line2._c());
+        return *new Line(-to_sym._a(), to_sym._b(), to_sym._c());
 
     }
 
     std::cout<< "x " <<points[0].x<< " y " << points[0].y<<std::endl;
 
-    auto* second = new Point(0, -line2._c() / line2._b());
+    auto* second = new Point(0, -to_sym._c() / to_sym._b());
 
     if(second->x == points[0].x && second->y == points[0].y){
 
-        second = new Point(-line2._c() / line2._a(), 0);
+        second = new Point(-to_sym._c() / to_sym._a(), 0);
 
     }
 
 //    std::cout<< "x " <<second->x<< " y " << second->y<<std::endl;
 
 
-    Point min = point_line_distance(*second, line1);
+    Point min = point_line_distance(*second, line);
 
-    Point* display = new Point(2 * min.x - second->x, 2 * min.y - second->y);
+    auto* display = new Point(2 * min.x - second->x, 2 * min.y - second->y);
 
     std::cout<< "x " <<display->x<< " y " << display->y<<std::endl;
 
@@ -149,15 +149,86 @@ Line Functions::sym_display(Line &line1, Line &line2) {
 
 }
 
-Circle Functions::sym_display(Line &line, Circle &circle) {
+Circle Functions::sym_display(Line &line, Circle &to_sym) {
 
     Circle* res;
 
-    Point center = Point(circle._a(), circle._b());
+    Point center = Point(to_sym._a(), to_sym._b());
     Point min = point_line_distance(center, line);
 
-    res = new Circle(2 * min.x - center.x, 2 * min.y - center.y, circle._c());
-    return *res;
+    return *new Circle(2 * min.x - center.x, 2 * min.y - center.y, to_sym._c());
 
 }
+
+Functions::Point Functions::image(Circle &circle, Functions::Point& point) {
+
+    auto* center = new Point(circle._a(), circle._b());
+    Line directive = build_line(*center, point);
+    std::cout<<"center: x " << center->x << " y " << center->y <<std::endl;
+    std::cout<<"directive: x " << directive._a() << " y " << directive._b() <<std::endl;
+
+
+
+    double distance = pow(circle._c(), 2) / point_distance(*center, point);
+    double norm = sqrt(pow(distance, 2) / (pow(directive._a(), 2) + pow(directive._b(), 2)));
+
+    double x1 = center->x + directive._b() * norm;
+    double y1 = center->y - directive._a() * norm;
+    double x2 = center->x - directive._b() * norm;
+    double y2 = center->y + directive._a() * norm;
+
+    auto* first = new Point(x1, y1);
+    auto* second = new Point(x2, y2);
+
+    std::cout<<"first: x " << first->x << " y " << first->y <<std::endl;
+    std::cout<<"second: x " << second->x << " y " << second->y <<std::endl;
+
+    double first_dis = point_distance(*center, *first);
+    double second_dis = point_distance(point, *first);
+
+    if (first_dis > second_dis) {
+
+        return *first;
+
+    } else
+        return *second;
+
+
+}
+
+Circle Functions::inversion(Circle &circle, Line &to_invert) {
+
+    auto* center = new Point(circle._a(), circle._b());
+    Point min = point_line_distance(*center, to_invert);
+    std::cout<<"inverted: x " << min.x << " y " << min.y <<std::endl;
+
+
+    Point inverted = image(circle, min);
+    std::cout<<"inverted: x " << inverted.x << " y " << inverted.y <<std::endl;
+
+    return *new Circle((center->x + inverted.x) / 2, (center->y + inverted.y) / 2, point_distance(*center, inverted) / 2);
+
+}
+
+Line Functions::inversion(Circle &circle, Circle &to_invert) {
+
+    auto* first = new Point (to_invert._a(), to_invert._b() + to_invert._c());
+    auto* second = new Point (to_invert._a() + to_invert._c(), to_invert._b());
+
+    if(first->x == circle._a() && first->y == circle._b())
+        first = new Point (to_invert._a(), to_invert._b() - to_invert._c());
+
+    if(second->x == circle._a() && second->y == circle._b())
+        second = new Point (to_invert._a() - to_invert._c(), to_invert._b());
+
+    *first = image(circle, *first);
+    *second = image(circle, *second);
+
+    return build_line(*first, *second);
+
+
+}
+
+
+
 

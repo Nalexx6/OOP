@@ -30,9 +30,9 @@ int main() {
 //    std::cout<<a<<std::endl;
 
     auto* circle1 = new Circle(0, 0, 1);
-    Line* line1 = new Line(-2, 1, 0);
+    Line* line1 = new Line(1, 1, -1);
     Line* line2 = new Line(-3, 1, -1);
-    auto* circle2 = new Circle(1, 0, 1);
+    auto* circle2 = new Circle(0.5, 0.5, sqrt(2)/ 2);
 
 //    std::vector<Functions::Point> res = Functions::intersection(*line1, *line2);
 //
@@ -46,11 +46,11 @@ int main() {
 //        std::cout<< i.x << "\t" << i.y << std::endl;
 //    std::cout<< "lol"<<std::endl;
 //
-    Line res = Functions::sym_display(*line1, *line2);
+//    Line res = Functions::sym_display(*line1, *line2);
+//
+//    std::cout<< "a: " << res._a() << "\tb: " << res._b() << "\tc: " << res._c() << std::endl;
 
-    std::cout<< "a: " << res._a() << "\tb: " << res._b() << "\tc: " << res._c() << std::endl;
-
-    Circle res1 = Functions::sym_display(*line2, *circle1);
+    Line res1 = Functions::inversion(*circle1, *circle2);
 
     std::cout<< "a: " << res1._a() << "\tb: " << res1._b() << "\tc: " << res1._c() << std::endl;
 

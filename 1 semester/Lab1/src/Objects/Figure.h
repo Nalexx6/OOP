@@ -25,12 +25,6 @@ public:
     virtual double _b() = 0;
     virtual double _c() = 0;
 
-    //setters
-
-//    virtual void _a(const double& a) = 0;
-//    virtual void _b(const double& b) = 0;
-//    virtual void _c(const double& c) = 0;
-
 };
 
 
