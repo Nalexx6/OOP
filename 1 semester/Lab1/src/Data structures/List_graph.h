@@ -177,7 +177,13 @@ public:
 
                 if(j[i].vertex == index){
                     j.erase(j.begin() + i);
-                    break;
+                    this->edges--;
+
+                }
+                if(j[i].vertex > index){
+
+                    j[i].vertex--;
+
                 }
 
             }
