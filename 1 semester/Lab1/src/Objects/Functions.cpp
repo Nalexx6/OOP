@@ -304,12 +304,42 @@ namespace test_figures_functions{
 
 
     }
+    void test_sym_display(){
+
+        Line* line1 = new Line(1, 1, -1);
+        Line* line2 = new Line(-3, 1, 2);
+
+        Line res = Functions::sym_display(*line1, *line2);
+
+        //check symmetric display(lines intersects)
+        CHECK(res._a() / res._b() == double (-1) / 3);
+        CHECK(res._c() == 0);
+
+        line2 = new Line(2, 2, -3);
+
+        res = Functions::sym_display(*line1, *line2);
+
+        //check symmetric display(lines parallel)
+        CHECK(res._a() / res._b() == line1->_a() / line1->_b());
+
+        auto* circle1 = new Circle(0, 0, 1);
+
+        Circle res1 = Functions::sym_display(*line1, *circle1);
+
+        CHECK(res1._a() == 1);
+        CHECK(res1._b() == 1);
+
+
+
+    }
+
 
 }
 
 TEST_CASE("[figures] - checking intersection"){
 
     test_figures_functions::test_intersection();
+    test_figures_functions::test_sym_display();
 
 }
 
