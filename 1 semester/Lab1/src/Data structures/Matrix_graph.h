@@ -162,6 +162,8 @@ public:
         adj.erase(adj.begin() + index);
 
         for(auto& j: adj){
+            if(j[index] != nullptr)
+                this->edges--;
             j.erase(j.begin() + index);
         }
 

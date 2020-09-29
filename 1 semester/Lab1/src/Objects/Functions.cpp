@@ -318,7 +318,6 @@ namespace test_figures_functions{
         line2 = new Line(2, 2, -3);
 
         res = Functions::sym_display(*line1, *line2);
-
         //check symmetric display(lines parallel)
         CHECK(res._a() / res._b() == line1->_a() / line1->_b());
 
@@ -332,14 +331,19 @@ namespace test_figures_functions{
 
 
     }
+    void test_inversion(){
 
+
+
+    }
 
 }
 
-TEST_CASE("[figures] - checking intersection"){
+TEST_CASE("[figures] - checking all functions"){
 
     test_figures_functions::test_intersection();
     test_figures_functions::test_sym_display();
+    test_figures_functions::test_inversion();
 
 }
 
