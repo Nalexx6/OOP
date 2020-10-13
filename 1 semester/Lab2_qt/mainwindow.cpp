@@ -1,15 +1,13 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-#include <QFile>
-#include <QTextStream>
-#include "note.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
 }
 
 MainWindow::~MainWindow()
@@ -18,16 +16,11 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_toSave_clicked()
+
+
+void MainWindow::on_Newnotebtn_clicked()
 {
 
-    Note note{ui->inpNew->toPlainText()};
+    new_note_window.show();
 
-    QFile file{"data.txt"};
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text))
-            return;
-
-    QTextStream out(&file);
-    out << note.text() << "\n";
-    file.close();
 }

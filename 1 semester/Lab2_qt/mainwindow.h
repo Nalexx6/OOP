@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+#include "new_note_window.h"
+#include "datamanager.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -16,9 +19,17 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_toSave_clicked();
+
+    void on_Newnotebtn_clicked();
 
 private:
     Ui::MainWindow *ui;
+
+    QVector<QString> data;
+    QVector<QString> archive;
+
+    New_note_window new_note_window;
+
+
 };
 #endif // MAINWINDOW_H

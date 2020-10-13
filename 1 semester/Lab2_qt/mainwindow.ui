@@ -14,41 +14,41 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="inplabel">
+   <widget class="QTableWidget" name="Noteslist">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>70</y>
-      <width>55</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>New note</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="inpNew">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>70</y>
-      <width>531</width>
-      <height>191</height>
+      <x>70</x>
+      <y>60</y>
+      <width>521</width>
+      <height>371</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="toSave">
+   <widget class="QGroupBox" name="Editbuttons">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>300</y>
-      <width>93</width>
-      <height>28</height>
+      <x>610</x>
+      <y>60</y>
+      <width>120</width>
+      <height>371</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Save</string>
+    <property name="title">
+     <string>GroupBox</string>
     </property>
+    <widget class="QPushButton" name="Newnotebtn">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>New+</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
