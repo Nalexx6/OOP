@@ -6,49 +6,91 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>853</width>
+    <height>628</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Notes app</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableWidget" name="Noteslist">
+   <widget class="QListView" name="lstNotes">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>60</y>
+      <x>150</x>
+      <y>130</y>
       <width>521</width>
-      <height>371</height>
+      <height>431</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QGroupBox" name="Editbuttons">
+   <widget class="QPushButton" name="btnAddDescr">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>60</y>
-      <width>120</width>
-      <height>371</height>
+      <x>680</x>
+      <y>80</y>
+      <width>93</width>
+      <height>28</height>
      </rect>
     </property>
-    <property name="title">
-     <string>GroupBox</string>
+    <property name="text">
+     <string>Edit</string>
     </property>
-    <widget class="QPushButton" name="Newnotebtn">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>93</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>New+</string>
-     </property>
-    </widget>
+   </widget>
+   <widget class="QPushButton" name="btnNotes">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>130</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Notes</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnArchive">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>170</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Archive</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="txtNew_note_ttl">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>50</y>
+      <width>521</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Type for new...</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnSave">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>50</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save note</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -56,7 +98,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>853</width>
      <height>26</height>
     </rect>
    </property>

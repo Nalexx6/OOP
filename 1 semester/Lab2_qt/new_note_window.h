@@ -6,6 +6,7 @@
 #include <QTextStream>
 
 #include "note.h"
+//#include "mainwindow.h"
 
 namespace Ui {
 class New_note_window;
@@ -19,12 +20,21 @@ public:
     explicit New_note_window(QWidget *parent = nullptr);
     ~New_note_window();
 
+    Note note() const;
+    void setNote(const Note &note);
+
+
 private slots:
 
-    void on_btnSaveandClose_clicked();
+    void on_btnCancel_clicked();
+
+    void on_btnSaveDescr_clicked();
 
 private:
     Ui::New_note_window *ui;
+
+    Note _note;
+
 };
 
 #endif // NEW_NOTE_WINDOW_H

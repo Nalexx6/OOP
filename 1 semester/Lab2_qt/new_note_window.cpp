@@ -13,23 +13,34 @@ New_note_window::~New_note_window()
     delete ui;
 }
 
-void New_note_window::on_btnSaveandClose_clicked()
+void New_note_window::on_btnSaveDescr_clicked()
 {
 
-    time_t t;
-    time(&t);
-    tm* time = localtime(&t);
-    Date date{ time->tm_mday, time->tm_mon + 1, time->tm_year + 1900,
-             time->tm_sec, time->tm_min, time->tm_hour};
-    Note note{ui->Title_edit->toPlainText() + ".txt", ui->Note_edit->toPlainText(), date};
-
-    QFile file{note.title()};
-    if (!file.open(QIODevice::WriteOnly |QIODevice::Append | QIODevice::Text))
-            return;
-
-    QTextStream stream(&file);
-    stream<< note.text();
-    file.close();
+//    Note* note = new Note{ui->titleEdit->toPlainText(), ui->noteEdit->toPlainText(), date};
+    this->_note.setText(ui->noteEdit->toPlainText());
 
     this->hide();
+
 }
+
+Note New_note_window::note() const
+{
+    return _note;
+}
+
+void New_note_window::setNote(const Note &note)
+{
+    _note = note;
+    ui->titleEdit->setText(_note.title());
+    ui->noteEdit->setText(_note.text());
+}
+
+void New_note_window::on_btnCancel_clicked()
+{
+//    if(this->_note.text() != ui->noteEdit->toPlainText())
+
+    ui->noteEdit->setText(_note.text());
+    this->hide();
+
+}
+

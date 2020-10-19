@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <QString>
+#include <QVector>
 
 #include "date.h"
 
@@ -11,6 +12,7 @@ class Note
 private:
 
     QString _title;
+    QVector<QString> contexts;
     QString _text;
     Date _date;
 

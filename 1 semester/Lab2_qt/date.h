@@ -1,6 +1,8 @@
 #ifndef DATE_H
 #define DATE_H
 
+#include <iostream>
+#include <QTextStream>
 #include <ctime>
 
 class Date
@@ -11,9 +13,11 @@ private:
     int _month;
     int _year;
 
-    int _secs;
-    int _mins;
     int _hours;
+    int _mins;
+    int _secs;
+
+
 
 public:
     Date();
@@ -34,5 +38,8 @@ public:
     int hours() const;
     void setHours(const int &hours);
 };
+
+
+
 
 #endif // DATE_H

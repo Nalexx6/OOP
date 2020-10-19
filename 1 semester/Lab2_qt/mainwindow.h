@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStringListModel>
+#include <QMessageBox>
 
 #include "new_note_window.h"
-#include "datamanager.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,15 +22,26 @@ public:
 
 private slots:
 
-    void on_Newnotebtn_clicked();
+    void on_lstNotes_clicked(const QModelIndex &index);
+
+    void on_btnAddDescr_clicked();
+
+    void on_btnSave_clicked();
 
 private:
     Ui::MainWindow *ui;
 
-    QVector<QString> data;
-    QVector<QString> archive;
+    QVector<Note> data;
+    QVector<Note> archive;
 
     New_note_window new_note_window;
+
+    QStringListModel *model;
+
+    //private methods
+    void load_notes_list();
+    void add_note_to_table(const QString& title, const Date &date);
+    void add_note_to_data(const Note& note);
 
 
 };

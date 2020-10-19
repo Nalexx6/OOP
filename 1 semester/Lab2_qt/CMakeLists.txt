@@ -40,8 +40,6 @@ if(ANDROID)
     new_note_window.ui
     date.cpp
     date.h
-    datamanager.cpp
-    datamanager.h
 
   )
 else()
@@ -57,8 +55,6 @@ else()
     new_note_window.ui
     date.cpp
     date.h
-    datamanager.cpp
-    datamanager.h
 
   )
 endif()
