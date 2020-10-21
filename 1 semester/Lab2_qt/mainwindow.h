@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QStringListModel>
+#include <QStandardItemModel>
 #include <QMessageBox>
 
 #include "new_note_window.h"
@@ -36,12 +37,24 @@ private:
 
     New_note_window new_note_window;
 
-    QStringListModel *model;
+//    QStringListModel *model;
+    QStandardItemModel *model;
 
     //private methods
     void load_notes_list();
     void add_note_to_table(const QString& title, const Date &date);
     void add_note_to_data(const Note& note);
+
+    //actions with list
+    void edit_note(const Note& note);
+    void delete_note(const Note& note);
+    void archive_note(const Note& note);
+
+    //auxiliary actions for list functions
+    Note parce(const QString& input);
+
+
+
 
 
 };

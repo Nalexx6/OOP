@@ -5,7 +5,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
     , ui(new Ui::MainWindow),
-    model(new QStringListModel)
+    model(new QStandardItemModel)
 {
     ui->setupUi(this);
 
@@ -82,6 +82,7 @@ void MainWindow::load_notes_list()
 //       QString line = in.readLine();
 
        title = in.readLine();
+       title.remove(title.size() - 1, 1);
        date.setDay(in.readLine().toInt());
        date.setMonth(in.readLine().toInt());
        date.setYear(in.readLine().toInt());
@@ -114,8 +115,8 @@ void MainWindow::add_note_to_table(const QString& title, const Date &date)
     int list_size = model->rowCount();
 
     model->insertRow(list_size);
-    QModelIndex index = model->index(list_size);
-    model->setData(index,note_descr);
+    auto item = new QStandardItem(note_descr);
+    model->setItem(list_size, item);
 
 }
 
@@ -146,14 +147,45 @@ void MainWindow::add_note_to_data(const Note &note)
 
 }
 
+Note MainWindow::parce(const QString &input)
+{
+
+
+    Note note;
+
+    return note;
+
+}
+
+
+
 
 
 void MainWindow::on_lstNotes_clicked(const QModelIndex &index)
 {
 
+    //edit, archive, delete, cancel
 //    QMessageBox::StandardButton reply;
 //                reply = QMessageBox::question(this,
 //                                              "Choose what do you want to with this note?" );
+
+    QMessageBox msgBox;
+    QPushButton *editButton = msgBox.addButton(tr("Edit"), QMessageBox::ActionRole);
+    QPushButton *deleteButton = msgBox.addButton(tr("Delete"), QMessageBox::ActionRole);
+    QPushButton *archiveButton = msgBox.addButton(tr("Archive"), QMessageBox::ActionRole);
+    QPushButton *cancelButton = msgBox.addButton(QMessageBox::Cancel);
+
+    msgBox.exec();
+
+    if (msgBox.clickedButton() == editButton) {
+
+    } else if (msgBox.clickedButton() == deleteButton) {
+//        edit_note(1);
+    } else if (msgBox.clickedButton() == archiveButton) {
+        // abort
+    } else if (msgBox.clickedButton() == cancelButton) {
+        // cancel
+    }
 
 }
 
