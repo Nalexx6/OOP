@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QStringListModel>
+//#include <QStringListModel>
 #include <QStandardItemModel>
 #include <QMessageBox>
+#include <QDebug>
+#include <QStackedLayout>
 
 #include "new_note_window.h"
 
@@ -29,6 +31,10 @@ private slots:
 
     void on_btnSave_clicked();
 
+    void on_btnArchive_clicked();
+
+    void on_btnNotes_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -39,6 +45,8 @@ private:
 
 //    QStringListModel *model;
     QStandardItemModel *model;
+    QStandardItemModel *arch_model;
+    QStackedLayout *lists;
 
     //private methods
     void load_notes_list();
@@ -46,16 +54,9 @@ private:
     void add_note_to_data(const Note& note);
 
     //actions with list
-    void edit_note(const Note& note);
-    void delete_note(const Note& note);
+    void edit_note(Note& note);
+    void delete_note(int data_index, const QModelIndex &index);
     void archive_note(const Note& note);
-
-    //auxiliary actions for list functions
-    Note parce(const QString& input);
-
-
-
-
 
 };
 #endif // MAINWINDOW_H

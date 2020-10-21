@@ -92,6 +92,16 @@
      <string>Save note</string>
     </property>
    </widget>
+   <widget class="QListView" name="lstArchive">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>130</y>
+      <width>521</width>
+      <height>431</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -5,11 +5,19 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
     , ui(new Ui::MainWindow),
-    model(new QStandardItemModel)
+    model(new QStandardItemModel),
+    arch_model(new QStandardItemModel),
+    lists(new QStackedLayout)
 {
     ui->setupUi(this);
 
     ui->lstNotes->setModel(model);
+    ui->lstArchive->setModel(arch_model);
+
+    this->lists->addWidget(ui->lstNotes);
+    this->lists->addWidget(ui->lstArchive);
+
+    this->lists->setCurrentWidget(ui->lstNotes);
 
     load_notes_list();
 
@@ -104,14 +112,14 @@ void MainWindow::add_note_to_table(const QString& title, const Date &date)
 {
 
     data.push_back(Note(title, "", date));
-    QString note_descr = QString("%1 %2/%3/%4 %5:%6:%7").arg(
-                title,
-                QString::number(date.day()),
-                QString::number(date.month()),
-                QString::number(date.year()),
-                QString::number(date.hours()),
-                QString::number(date.mins()),
-                QString::number(date.secs()));
+    QString note_descr = QString("%1").arg(
+                title);
+//                QString::number(date.day()),
+//                QString::number(date.month()),
+//                QString::number(date.year()),
+//                QString::number(date.hours()),
+//                QString::number(date.mins()),
+//                QString::number(date.secs()));
     int list_size = model->rowCount();
 
     model->insertRow(list_size);
@@ -147,29 +155,29 @@ void MainWindow::add_note_to_data(const Note &note)
 
 }
 
-Note MainWindow::parce(const QString &input)
+void MainWindow::edit_note(Note &note)
 {
 
 
-    Note note;
-
-    return note;
 
 }
 
+void MainWindow::delete_note(int data_index, const QModelIndex &index)
+{
 
+    data.erase(data.begin() + data_index);
+    model->removeRow(data_index, index);
 
-
+}
 
 void MainWindow::on_lstNotes_clicked(const QModelIndex &index)
 {
 
     //edit, archive, delete, cancel
-//    QMessageBox::StandardButton reply;
-//                reply = QMessageBox::question(this,
-//                                              "Choose what do you want to with this note?" );
+    QString chosen = model->data(index).toString();
 
     QMessageBox msgBox;
+    msgBox.setText("Choose, what do you want to with this note?");
     QPushButton *editButton = msgBox.addButton(tr("Edit"), QMessageBox::ActionRole);
     QPushButton *deleteButton = msgBox.addButton(tr("Delete"), QMessageBox::ActionRole);
     QPushButton *archiveButton = msgBox.addButton(tr("Archive"), QMessageBox::ActionRole);
@@ -179,10 +187,30 @@ void MainWindow::on_lstNotes_clicked(const QModelIndex &index)
 
     if (msgBox.clickedButton() == editButton) {
 
+//        Note note;
+//        for(auto& i: data){
+
+//            if(i.title() == chosen){
+//                edit_note(i);
+//                break;
+//            }
+//        }
     } else if (msgBox.clickedButton() == deleteButton) {
-//        edit_note(1);
+        for(int i = 0; i < data.size(); i++){
+
+            if(data[i].title() == chosen){
+                model->removeRow(i);
+//                qDebug() << data[i].title();
+                QFile file(data[i].title() + ".txt");
+                file.remove();
+                data.erase(data.begin() + i);
+
+                break;
+            }
+
+        }
     } else if (msgBox.clickedButton() == archiveButton) {
-        // abort
+        // archive
     } else if (msgBox.clickedButton() == cancelButton) {
         // cancel
     }
@@ -191,3 +219,15 @@ void MainWindow::on_lstNotes_clicked(const QModelIndex &index)
 
 
 
+
+void MainWindow::on_btnArchive_clicked()
+{
+
+    this->lists->setCurrentWidget(ui->lstArchive);
+
+}
+
+void MainWindow::on_btnNotes_clicked()
+{
+    this->lists->setCurrentWidget(ui->lstNotes);
+}
