@@ -55,7 +55,7 @@ private:
     //private methods
     void load_notes_list(QStandardItemModel *model, QFile& in,  QVector<Note>& list);
     void add_note_to_table(Note& note, QVector<Note>& list ,QStandardItemModel *model);
-    void add_note_to_data(const Note& note);
+    void add_note_to_file(const Note& note, QFile& out);
 //    void add_note_to_archive(const Note& note);
 
     //actions with list

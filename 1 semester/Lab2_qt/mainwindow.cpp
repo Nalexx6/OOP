@@ -69,7 +69,6 @@ void MainWindow::on_btnSave_clicked()
    file.close();
 
    add_note_to_table(note, data, main_model);
-   add_note_to_data(note);
 
    ui->txtNew_note_ttl->setText("");
    new_note_window.setNote(Note("", "", Date(1,1,2020, 0,0,0)));
@@ -77,30 +76,30 @@ void MainWindow::on_btnSave_clicked()
 }
 
 
-void MainWindow::add_note_to_data(const Note &note)
+void MainWindow::add_note_to_file(const Note &note, QFile& out)
 {
 
-    QFile file{"data.txt"};
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+//    QFile file{"data.txt"};
+    if (!out.open(QIODevice::ReadOnly | QIODevice::Text))
             return;
 
     bool empty = false;
-    if(file.size() == 0){
+    if(out.size() == 0){
         empty = true;
     }
-    file.close();
+    out.close();
 
-    if (!file.open(QIODevice::WriteOnly |QIODevice::Append | QIODevice::Text))
+    if (!out.open(QIODevice::WriteOnly |QIODevice::Append | QIODevice::Text))
             return;
 
-    QTextStream stream(&file);
+    QTextStream stream(&out);
 
     if(!empty)
         stream << "\n";
     stream << note.title() << "\n" <<
            note.date().day() << "\n" << note.date().month() << "\n" << note.date().year() << "\n"
                          << note.date().hours() << "\n" << note.date().mins() << "\n" << note.date().secs();
-    file.close();
+    out.close();
 
 }
 
@@ -196,8 +195,23 @@ int MainWindow::bin_search(const QVector<Note> &list, Date date)
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    QFile main_file {"data.txt"};
+    QFile archive_file {"archive.txt"};
 
+    main_file.resize(0);
+    archive_file.resize(0);
 
+    for(auto& i: data){
+
+       add_note_to_file(i, main_file);
+
+    }
+
+    for(auto& i: archive){
+
+       add_note_to_file(i, archive_file);
+
+    }
 
 }
 
