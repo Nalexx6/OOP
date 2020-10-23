@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QStackedLayout>
+#include <QCloseEvent>
 
 #include "new_note_window.h"
 
@@ -35,6 +36,8 @@ private slots:
 
     void on_btnNotes_clicked();
 
+    void on_lstArchive_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
 
@@ -43,20 +46,27 @@ private:
 
     New_note_window new_note_window;
 
+    //main list of notes and archive containers
 //    QStringListModel *model;
-    QStandardItemModel *model;
+    QStandardItemModel *main_model;
     QStandardItemModel *arch_model;
     QStackedLayout *lists;
 
     //private methods
-    void load_notes_list();
-    void add_note_to_table(const QString& title, const Date &date);
+    void load_notes_list(QStandardItemModel *model, QFile& in,  QVector<Note>& list);
+    void add_note_to_table(Note& note, QVector<Note>& list ,QStandardItemModel *model);
     void add_note_to_data(const Note& note);
+//    void add_note_to_archive(const Note& note);
 
     //actions with list
     void edit_note(Note& note);
     void delete_note(int data_index, const QModelIndex &index);
     void archive_note(const Note& note);
+    int bin_search(const QVector<Note>& list, Date date);
+
+    //
+    void closeEvent (QCloseEvent *event);
+
 
 };
 #endif // MAINWINDOW_H

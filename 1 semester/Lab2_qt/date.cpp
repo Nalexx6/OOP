@@ -65,3 +65,143 @@ Date::Date()
 
 }
 
+
+bool operator >(Date a, Date b)
+{
+
+    if(a.year() > b.year())
+        return true;
+    if(a.year() < b.year())
+        return false;
+    if(a.month() > b.month())
+        return true;
+    if(a.month() < b.month())
+        return false;
+    if(a.day() > b.day())
+        return true;
+    if(a.day() < b.day())
+        return false;
+    if(a.hours() > b.hours())
+        return true;
+    if(a.hours() < b.hours())
+        return false;
+    if(a.mins() > b.mins())
+        return true;
+    if(a.mins() < b.mins())
+        return false;
+    if(a.secs() > b.secs())
+        return true;
+    if(a.secs() < b.secs())
+        return false;
+
+    return false;
+
+}
+
+bool operator <(Date a, Date b)
+{
+
+    if(a.year() < b.year())
+        return true;
+    if(a.year() > b.year())
+        return false;
+    if(a.month() < b.month())
+        return true;
+    if(a.month() > b.month())
+        return false;
+    if(a.day() < b.day())
+        return true;
+    if(a.day() > b.day())
+        return false;
+    if(a.hours() < b.hours())
+        return true;
+    if(a.hours() > b.hours())
+        return false;
+    if(a.mins() < b.mins())
+        return true;
+    if(a.mins() > b.mins())
+        return false;
+    if(a.secs() < b.secs())
+        return true;
+    if(a.secs() > b.secs())
+        return false;
+
+    return false;
+
+}
+
+bool operator >=(Date a, Date b)
+{
+
+    if(a.year() > b.year())
+        return true;
+    if(a.year() < b.year())
+        return false;
+    if(a.month() > b.month())
+        return true;
+    if(a.month() < b.month())
+        return false;
+    if(a.day() > b.day())
+        return true;
+    if(a.day() < b.day())
+        return false;
+    if(a.hours() > b.hours())
+        return true;
+    if(a.hours() < b.hours())
+        return false;
+    if(a.mins() > b.mins())
+        return true;
+    if(a.mins() < b.mins())
+        return false;
+    if(a.secs() > b.secs())
+        return true;
+    if(a.secs() < b.secs())
+        return false;
+
+    return true;
+
+}
+
+bool operator <=(Date a, Date b)
+{
+
+    if(a.year() < b.year())
+        return true;
+    if(a.year() > b.year())
+        return false;
+    if(a.month() < b.month())
+        return true;
+    if(a.month() > b.month())
+        return false;
+    if(a.day() < b.day())
+        return true;
+    if(a.day() > b.day())
+        return false;
+    if(a.hours() < b.hours())
+        return true;
+    if(a.hours() > b.hours())
+        return false;
+    if(a.mins() < b.mins())
+        return true;
+    if(a.mins() > b.mins())
+        return false;
+    if(a.secs() < b.secs())
+        return true;
+    if(a.secs() > b.secs())
+        return false;
+
+    return true;
+
+}
+
+bool operator ==(Date a, Date b)
+{
+
+
+
+}
+
+bool operator !=(Date a, Date b)
+{
+
+}

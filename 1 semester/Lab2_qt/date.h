@@ -39,7 +39,12 @@ public:
     void setHours(const int &hours);
 };
 
-
+bool operator > (Date a, Date b);
+bool operator < (Date a, Date b);
+bool operator >= (Date a, Date b);
+bool operator <= (Date a, Date b);
+bool operator == (Date a, Date b);
+bool operator != (Date a, Date b);
 
 
 #endif // DATE_H
