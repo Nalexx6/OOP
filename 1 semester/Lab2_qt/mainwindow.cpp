@@ -141,9 +141,9 @@ void MainWindow::load_notes_list(QStandardItemModel *model, QFile& in,  QVector<
 
 void MainWindow::add_note_to_table(Note& note, QVector<Note>& list ,QStandardItemModel *model)
 {
-
-//    list.insert(list.begin() + bin_search(list, note.date()), note);
-    list.push_back(note);
+    int index = bin_search(list, note.date());
+    list.insert(list.begin() + index, note);
+//    list.push_back(note);
     QString note_descr = QString("%1").arg(
                 note.title());
 //                QString::number(date.day()),
@@ -152,11 +152,13 @@ void MainWindow::add_note_to_table(Note& note, QVector<Note>& list ,QStandardIte
 //                QString::number(date.hours()),
 //                QString::number(date.mins()),
 //                QString::number(date.secs()));
-    int list_size = model->rowCount();
+//    int list_size = model->rowCount();
 
-    model->insertRow(list_size);
+    model->insertRow(index);
     auto item = new QStandardItem(note_descr);
-    model->setItem(list_size, item);
+//    for(int i = list_size; i > index; i--){
+    model->setItem(index, item);
+//    }
 
 }
 
