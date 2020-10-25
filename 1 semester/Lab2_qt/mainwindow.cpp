@@ -254,6 +254,8 @@ void MainWindow::on_btnCancel_clicked()
     ui->txtEdit->setText("");
     this->lists->setCurrentWidget(ui->lstNotes);
 
+
+
 }
 
 void MainWindow::on_btnSavechng_clicked()
@@ -264,78 +266,63 @@ void MainWindow::on_btnSavechng_clicked()
 void MainWindow::on_btnDelete_clicked()
 {
 
+    QMessageBox msgBox;
+    msgBox.setText("Are you sure, you want to delete this note?");
+    QPushButton *yesBtn = msgBox.addButton(QMessageBox::Yes);
+    QPushButton *cancelBtn = msgBox.addButton(QMessageBox::Cancel);
 
+    msgBox.exec();
+
+    if (msgBox.clickedButton() == yesBtn) {
+
+        this->main_model->removeRow(main_edit_index);
+
+        QFile res{data[main_edit_index].title() + ".txt"};
+        res.remove();
+
+        data.erase(data.begin() + main_edit_index);
+
+        ui->ttlEdit->setText("");
+        ui->txtEdit->setText("");
+        this->lists->setCurrentWidget(ui->lstNotes);
+
+    } else if (msgBox.clickedButton() == cancelBtn){
+
+       //cancel
+
+    }
 
 }
 
 void MainWindow::on_lstNotes_clicked(const QModelIndex &index)
 {
-    int row = index.row();
+    this->main_edit_index = index.row();
 
-    ui->ttlEdit->setPlainText(data[row].title());
-    ui->txtEdit->setPlainText(data[row].text());
+    ui->ttlEdit->setPlainText(data[main_edit_index].title());
+    ui->txtEdit->setPlainText(data[main_edit_index].text());
+
+    ui->btnSavechng->show();
+    ui->btnDelete->show();
 
     this->lists->setCurrentWidget(ui->wgtNewnote);
-
-
-
 
 }
 
 void MainWindow::on_lstArchive_clicked(const QModelIndex &index)
 {
 
-    //edit, archive, delete, cancel
-    QString chosen = arch_model->data(index).toString();
+    this->arch_edit_index = index.row();
 
-    QMessageBox msgBox;
-    msgBox.setText("Choose, what do you want to with this note?");
-    QPushButton *editButton = msgBox.addButton(tr("Edit"), QMessageBox::ActionRole);
-    QPushButton *deleteButton = msgBox.addButton(tr("Delete"), QMessageBox::ActionRole);
-    QPushButton *unarchiveButton = msgBox.addButton(tr("Unarchive"), QMessageBox::ActionRole);
-    QPushButton *cancelButton = msgBox.addButton(QMessageBox::Cancel);
+    ui->ttlEdit->setPlainText(archive[arch_edit_index].title());
+    ui->txtEdit->setPlainText(archive[arch_edit_index].text());
 
-    msgBox.exec();
+    ui->btnSavechngArch->show();
+    ui->btnUnarch->show();
+    ui->btnCancelarch->show();
+    ui->btnDeletearch->show();
 
-    if (msgBox.clickedButton() == editButton) {
 
-//        Note note;
-//        for(auto& i: data){
-
-//            if(i.title() == chosen){
-//                edit_note(i);
-//                break;
-//            }
-//        }
-    } else if (msgBox.clickedButton() == deleteButton) {
-        for(int i = 0; i < archive.size(); i++){
-
-            if(archive[i].title() == chosen){
-                arch_model->removeRow(i);
-                qDebug() << archive[i].title();
-                QFile file(archive[i].title() + ".txt");
-                file.remove();
-                archive.erase(archive.begin() + i);
-
-                break;
-            }
-
-        }
-    } else if (msgBox.clickedButton() == unarchiveButton) {
-        for(int i = 0; i < archive.size(); i++){
-
-            if(archive[i].title() == chosen){
-                arch_model->removeRow(i);
-//                qDebug() << data[i].title();
-                add_note_to_table(archive[i], data, main_model);
-                archive.erase(archive.begin() + i);
-                break;
-            }
-
-        }
-    } else if (msgBox.clickedButton() == cancelButton) {
-        // cancel
-    }
+    this->lists->setCurrentWidget(ui->wgtNewnote);
 
 }
 
@@ -356,10 +343,42 @@ void MainWindow::on_bthCancelarch_clicked()
     ui->txtEdit->setText("");
     this->lists->setCurrentWidget(ui->lstArchive);
 
+    ui->btnSavechngArch->hide();
+    ui->btnUnarch->hide();
+    ui->btnCancelarch->hide();
+    ui->btnDeletearch->hide();
+
+
 }
 
 
 void MainWindow::on_btnDeletearch_clicked()
 {
+
+    QMessageBox msgBox;
+    msgBox.setText("Are you sure, you want to delete this note?");
+    QPushButton *yesBtn = msgBox.addButton(QMessageBox::Yes);
+    QPushButton *cancelBtn = msgBox.addButton(QMessageBox::Cancel);
+
+    msgBox.exec();
+
+    if (msgBox.clickedButton() == yesBtn) {
+
+        this->arch_model->removeRow(arch_edit_index);
+
+        QFile res{archive[arch_edit_index].title() + ".txt"};
+        res.remove();
+
+        archive.erase(archive.begin() + arch_edit_index);
+
+        ui->ttlEdit->setText("");
+        ui->txtEdit->setText("");
+        this->lists->setCurrentWidget(ui->lstArchive);
+
+    } else if (msgBox.clickedButton() == cancelBtn){
+
+       //cancel
+
+    }
 
 }

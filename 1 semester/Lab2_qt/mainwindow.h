@@ -73,8 +73,13 @@ private:
     void load_notes_list(QStandardItemModel *model, QFile& in,  QVector<Note>& list);
     void add_note_to_table(Note& note, QVector<Note>& list ,QStandardItemModel *model);
     void add_note_to_file(const Note& note, QFile& out);
-    int bin_search(const QVector<Note>& list, Date date);
     void closeEvent (QCloseEvent *event);
+
+    //auxiliary methods or variables
+    int bin_search(const QVector<Note>& list, Date date);
+    int main_edit_index;
+    int arch_edit_index;
+
 
 
 };
