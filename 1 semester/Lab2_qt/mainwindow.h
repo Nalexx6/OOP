@@ -45,14 +45,13 @@ private slots:
 
     void on_btnArch_clicked();
 
-    void on_bthUnarch_clicked();
+    void on_btnUnarch_clicked();
 
     void on_btnCancel_clicked();
 
     void on_btnDelete_clicked();
 
-
-    void on_bthCancelarch_clicked();
+    void on_btnCancelarch_clicked();
 
     void on_btnSavechngArch_clicked();
 

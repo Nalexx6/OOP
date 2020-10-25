@@ -254,12 +254,22 @@ void MainWindow::on_btnCancel_clicked()
     ui->txtEdit->setText("");
     this->lists->setCurrentWidget(ui->lstNotes);
 
-
-
 }
 
 void MainWindow::on_btnSavechng_clicked()
 {
+
+    if(data[main_edit_index].title() == ui->ttlEdit->toPlainText() &&
+         data[main_edit_index].text() == ui->txtEdit->toPlainText()){
+
+        this->on_btnCancel_clicked();
+        return;
+    }
+
+    this->main_model->removeRow(main_edit_index);
+    data.erase(data.begin() + main_edit_index);
+
+    this->on_btnSave_clicked();
 
 }
 
@@ -329,14 +339,49 @@ void MainWindow::on_lstArchive_clicked(const QModelIndex &index)
 void MainWindow::on_btnSavechngArch_clicked()
 {
 
+    if(archive[arch_edit_index].title() == ui->ttlEdit->toPlainText() &&
+         archive[arch_edit_index].text() == ui->txtEdit->toPlainText()){
+
+        this->on_btnCancelarch_clicked();
+        return;
+    }
+
+    time_t t;
+    time(&t);
+    tm* time = localtime(&t);
+
+    this->arch_model->removeRow(arch_edit_index);
+    archive.erase(archive.begin() + arch_edit_index);
+
+    Date date{ time->tm_mday, time->tm_mon + 1, time->tm_year + 1900,
+             time->tm_sec, time->tm_min, time->tm_hour};
+
+    Note note (ui->ttlEdit->toPlainText(),
+               ui->txtEdit->toPlainText(),
+               date);
+
+   QFile file{note.title() + ".txt"};
+   if (!file.open(QIODevice::WriteOnly |QIODevice::Append | QIODevice::Text))
+           return;
+
+   QTextStream stream(&file);
+   stream<< note.text();
+   file.close();
+
+   add_note_to_table(note, archive, arch_model);
+
+   ui->ttlEdit->setText("");
+   ui->txtEdit->setText("");
+   this->lists->setCurrentWidget(ui->lstArchive);
+
 }
 
-void MainWindow::on_bthUnarch_clicked()
+void MainWindow::on_btnUnarch_clicked()
 {
 
 }
 
-void MainWindow::on_bthCancelarch_clicked()
+void MainWindow::on_btnCancelarch_clicked()
 {
 
     ui->ttlEdit->setText("");
