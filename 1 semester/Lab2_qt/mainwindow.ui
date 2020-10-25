@@ -17,37 +17,37 @@
    <widget class="QListView" name="lstNotes">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>130</y>
-      <width>521</width>
-      <height>431</height>
+      <x>130</x>
+      <y>30</y>
+      <width>551</width>
+      <height>531</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="mouseTracking">
      <bool>true</bool>
     </property>
-   </widget>
-   <widget class="QPushButton" name="btnAddDescr">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>80</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Edit</string>
+    <property name="textElideMode">
+     <enum>Qt::ElideLeft</enum>
     </property>
    </widget>
    <widget class="QPushButton" name="btnNotes">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>130</y>
+      <x>30</x>
+      <y>70</y>
       <width>93</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Notes</string>
@@ -56,50 +56,252 @@
    <widget class="QPushButton" name="btnArchive">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>170</y>
+      <x>30</x>
+      <y>110</y>
       <width>93</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Archive</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="txtNew_note_ttl">
+   <widget class="QListView" name="lstArchive">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>50</y>
-      <width>521</width>
-      <height>61</height>
+      <x>130</x>
+      <y>30</y>
+      <width>551</width>
+      <height>531</height>
      </rect>
     </property>
-    <property name="placeholderText">
-     <string>Type for new...</string>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnSave">
+   <widget class="QGroupBox" name="wgtNewnote">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>50</y>
+      <x>130</x>
+      <y>20</y>
+      <width>641</width>
+      <height>541</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QTextEdit" name="ttlEdit">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>491</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="txtEdit">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>491</width>
+       <height>451</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSave">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>20</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Save note</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnArch">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>60</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>[↓]</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnDelete">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>140</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Delete</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnCancel">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>100</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSavechng">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>20</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Save changes</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnUnarch">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>60</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>[↑]</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnCancelarch">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>100</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSavechngArch">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>20</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Save changes</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnDeletearch">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>140</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Delete</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="btnNew">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
       <width>93</width>
       <height>28</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Save note</string>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
     </property>
-   </widget>
-   <widget class="QListView" name="lstArchive">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>130</y>
-      <width>521</width>
-      <height>431</height>
-     </rect>
+    <property name="text">
+     <string>New +</string>
     </property>
    </widget>
   </widget>

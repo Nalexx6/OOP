@@ -35,9 +35,6 @@ if(ANDROID)
     mainwindow.ui
     note.cpp
     note.h
-    new_note_window.cpp
-    new_note_window.h
-    new_note_window.ui
     date.cpp
     date.h
 
@@ -50,9 +47,6 @@ else()
     mainwindow.ui
     note.cpp
     note.h
-    new_note_window.cpp
-    new_note_window.h
-    new_note_window.ui
     date.cpp
     date.h
 

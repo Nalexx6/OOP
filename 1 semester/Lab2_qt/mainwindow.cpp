@@ -16,6 +16,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->lists->addWidget(ui->lstNotes);
     this->lists->addWidget(ui->lstArchive);
+    this->lists->addWidget(ui->wgtNewnote);
+
+    ui->btnUnarch->hide();
+    ui->btnSavechng->hide();
+    ui->btnCancelarch->hide();
+    ui->btnSavechngArch->hide();
+    ui->btnDeletearch->hide();
 
     this->lists->setCurrentWidget(ui->lstNotes);
 
@@ -32,49 +39,15 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_btnAddDescr_clicked()
+
+void MainWindow::on_btnNew_clicked()
 {
-    QString title = ui->txtNew_note_ttl->toPlainText();
 
-    if(title == "")
-        return;
+    ui->btnDelete->hide();
 
-    new_note_window.setNote(Note(title, new_note_window.note().text(),
-                                 Date(1,1,2020, 0,0,0)));
-    new_note_window.show();
+    this->lists->setCurrentWidget(ui->wgtNewnote);
 
 }
-
-void MainWindow::on_btnSave_clicked()
-{
-    time_t t;
-    time(&t);
-    tm* time = localtime(&t);
-
-    Date date{ time->tm_mday, time->tm_mon + 1, time->tm_year + 1900,
-             time->tm_sec, time->tm_min, time->tm_hour};
-
-    Note note (ui->txtNew_note_ttl->toPlainText(),
-               new_note_window.note().text(),
-               date);
-
-   data.push_back(note);
-
-   QFile file{note.title() + ".txt"};
-   if (!file.open(QIODevice::WriteOnly |QIODevice::Append | QIODevice::Text))
-           return;
-
-   QTextStream stream(&file);
-   stream<< note.text();
-   file.close();
-
-   add_note_to_table(note, data, main_model);
-
-   ui->txtNew_note_ttl->setText("");
-   new_note_window.setNote(Note("", "", Date(1,1,2020, 0,0,0)));
-
-}
-
 
 void MainWindow::add_note_to_file(const Note &note, QFile& out)
 {
@@ -110,7 +83,7 @@ void MainWindow::load_notes_list(QStandardItemModel *model, QFile& in,  QVector<
             return;
 
 //    qDebug() << "aaaaa\n";
-    QString title;
+    QString title, text;
     Date date;
     QTextStream stream(&in);
 
@@ -128,8 +101,15 @@ void MainWindow::load_notes_list(QStandardItemModel *model, QFile& in,  QVector<
        date.setSecs(in.readLine().toInt());
 
 //       std::cout<< "kekw\n";
+       QFile file {title + ".txt"};
+       if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+               return;
 
-       Note note = Note(title, "", date);
+       QTextStream temp(&file);
+
+       text = temp.readAll();
+
+       Note note = Note(title, text, date);
        add_note_to_table(note, list, model);
 
     }
@@ -140,6 +120,7 @@ void MainWindow::load_notes_list(QStandardItemModel *model, QFile& in,  QVector<
 
 void MainWindow::add_note_to_table(Note& note, QVector<Note>& list ,QStandardItemModel *model)
 {
+
     int index = bin_search(list, note.date());
     list.insert(list.begin() + index, note);
 //    list.push_back(note);
@@ -227,77 +208,77 @@ void MainWindow::on_btnNotes_clicked()
     this->lists->setCurrentWidget(ui->lstNotes);
 }
 
-void MainWindow::edit_note(Note &note)
+void MainWindow::on_btnSave_clicked()
+{
+    time_t t;
+    time(&t);
+    tm* time = localtime(&t);
+
+    Date date{ time->tm_mday, time->tm_mon + 1, time->tm_year + 1900,
+             time->tm_sec, time->tm_min, time->tm_hour};
+
+    Note note (ui->ttlEdit->toPlainText(),
+               ui->txtEdit->toPlainText(),
+               date);
+
+   QFile file{note.title() + ".txt"};
+   if (!file.open(QIODevice::WriteOnly |QIODevice::Append | QIODevice::Text))
+           return;
+
+   QTextStream stream(&file);
+   stream<< note.text();
+   file.close();
+
+   add_note_to_table(note, data, main_model);
+
+   ui->ttlEdit->setText("");
+   ui->txtEdit->setText("");
+   this->lists->setCurrentWidget(ui->lstNotes);
+
+   ui->btnDelete->show();
+
+
+}
+
+void MainWindow::on_btnArch_clicked()
 {
 
 
 
 }
 
+void MainWindow::on_btnCancel_clicked()
+{
 
-void MainWindow::archive_note(const Note &note)
+    ui->ttlEdit->setText("");
+    ui->txtEdit->setText("");
+    this->lists->setCurrentWidget(ui->lstNotes);
+
+}
+
+void MainWindow::on_btnSavechng_clicked()
+{
+
+}
+
+void MainWindow::on_btnDelete_clicked()
 {
 
 
 
 }
-
-
 
 void MainWindow::on_lstNotes_clicked(const QModelIndex &index)
 {
+    int row = index.row();
 
-    //edit, archive, delete, cancel
-    QString chosen = main_model->data(index).toString();
+    ui->ttlEdit->setPlainText(data[row].title());
+    ui->txtEdit->setPlainText(data[row].text());
 
-    QMessageBox msgBox;
-    msgBox.setText("Choose, what do you want to with this note?");
-    QPushButton *editButton = msgBox.addButton(tr("Edit"), QMessageBox::ActionRole);
-    QPushButton *deleteButton = msgBox.addButton(tr("Delete"), QMessageBox::ActionRole);
-    QPushButton *archiveButton = msgBox.addButton(tr("Archive"), QMessageBox::ActionRole);
-    QPushButton *cancelButton = msgBox.addButton(QMessageBox::Cancel);
+    this->lists->setCurrentWidget(ui->wgtNewnote);
 
-    msgBox.exec();
 
-    if (msgBox.clickedButton() == editButton) {
 
-//        Note note;
-//        for(auto& i: data){
-
-//            if(i.title() == chosen){
-//                edit_note(i);
-//                break;
-//            }
-//        }
-    } else if (msgBox.clickedButton() == deleteButton) {
-        for(int i = 0; i < data.size(); i++){
-
-            if(data[i].title() == chosen){
-                main_model->removeRow(i);
-//                qDebug() << data[i].title();
-                QFile file(data[i].title() + ".txt");
-                file.remove();
-                data.erase(data.begin() + i);
-
-                break;
-            }
-
-        }
-    } else if (msgBox.clickedButton() == archiveButton) {//archive note
-        for(int i = 0; i < data.size(); i++){
-
-            if(data[i].title() == chosen){
-                main_model->removeRow(i);
-//                qDebug() << data[i].title();
-                add_note_to_table(data[i], archive, arch_model);
-                data.erase(data.begin() + i);
-                break;
-            }
-
-        }
-    } else if (msgBox.clickedButton() == cancelButton) {
-        // cancel
-    }
 
 }
 
@@ -355,5 +336,30 @@ void MainWindow::on_lstArchive_clicked(const QModelIndex &index)
     } else if (msgBox.clickedButton() == cancelButton) {
         // cancel
     }
+
+}
+
+void MainWindow::on_btnSavechngArch_clicked()
+{
+
+}
+
+void MainWindow::on_bthUnarch_clicked()
+{
+
+}
+
+void MainWindow::on_bthCancelarch_clicked()
+{
+
+    ui->ttlEdit->setText("");
+    ui->txtEdit->setText("");
+    this->lists->setCurrentWidget(ui->lstArchive);
+
+}
+
+
+void MainWindow::on_btnDeletearch_clicked()
+{
 
 }

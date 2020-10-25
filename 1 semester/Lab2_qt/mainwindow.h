@@ -8,8 +8,11 @@
 #include <QDebug>
 #include <QStackedLayout>
 #include <QCloseEvent>
+#include <QVector>
+#include <QFile>
 
-#include "new_note_window.h"
+#include "note.h"
+//#include "date.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -28,15 +31,32 @@ private slots:
 
     void on_lstNotes_clicked(const QModelIndex &index);
 
-    void on_btnAddDescr_clicked();
-
-    void on_btnSave_clicked();
+    void on_lstArchive_clicked(const QModelIndex &index);
 
     void on_btnArchive_clicked();
 
     void on_btnNotes_clicked();
 
-    void on_lstArchive_clicked(const QModelIndex &index);
+    void on_btnNew_clicked();
+
+    void on_btnSave_clicked();
+
+    void on_btnSavechng_clicked();
+
+    void on_btnArch_clicked();
+
+    void on_bthUnarch_clicked();
+
+    void on_btnCancel_clicked();
+
+    void on_btnDelete_clicked();
+
+
+    void on_bthCancelarch_clicked();
+
+    void on_btnSavechngArch_clicked();
+
+    void on_btnDeletearch_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -44,10 +64,7 @@ private:
     QVector<Note> data;
     QVector<Note> archive;
 
-    New_note_window new_note_window;
-
     //main list of notes and archive containers
-//    QStringListModel *model;
     QStandardItemModel *main_model;
     QStandardItemModel *arch_model;
     QStackedLayout *lists;
@@ -56,15 +73,7 @@ private:
     void load_notes_list(QStandardItemModel *model, QFile& in,  QVector<Note>& list);
     void add_note_to_table(Note& note, QVector<Note>& list ,QStandardItemModel *model);
     void add_note_to_file(const Note& note, QFile& out);
-//    void add_note_to_archive(const Note& note);
-
-    //actions with list
-    void edit_note(Note& note);
-    void delete_note(int data_index, const QModelIndex &index);
-    void archive_note(const Note& note);
     int bin_search(const QVector<Note>& list, Date date);
-
-    //
     void closeEvent (QCloseEvent *event);
 
 
