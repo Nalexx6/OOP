@@ -38,8 +38,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
 void MainWindow::on_btnNew_clicked()
 {
 
@@ -148,20 +146,20 @@ int MainWindow::bin_search(const QVector<Note> &list, Date date)
     if(list.size() == 0){
         return 0;
     }
-    if(list[list.size() - 1].date() <= date){
+    if(list[list.size() - 1].date() >= date){
         return list.size();
     }
     if(list.size() == 1){
-        if(list[0].date() > date)
+        if(list[0].date() < date)
             return 0;
-        if(list[0].date() <= date)
+        if(list[0].date() >= date)
             return 1;
     }
     int a = 0, b = list.size() - 1;
     int middle = 0;
     while(a < b){
         middle = (a + b) / 2;
-        if(list[middle].date() <= date) {
+        if(list[middle].date() >= date) {
             a = middle + 1;
             middle = (a + b) / 2;
         } else{
@@ -243,7 +241,13 @@ void MainWindow::on_btnSave_clicked()
 void MainWindow::on_btnArch_clicked()
 {
 
+    main_model->removeRow(main_edit_index);
+    add_note_to_table(data[main_edit_index], archive, arch_model);
+    data.erase(data.begin() + main_edit_index);
 
+    ui->ttlEdit->setText("");
+    ui->txtEdit->setText("");
+    this->lists->setCurrentWidget(ui->lstNotes);
 
 }
 
@@ -378,6 +382,14 @@ void MainWindow::on_btnSavechngArch_clicked()
 
 void MainWindow::on_btnUnarch_clicked()
 {
+
+    arch_model->removeRow(arch_edit_index);
+    add_note_to_table(archive[arch_edit_index], data, main_model);
+    archive.erase(archive.begin() + arch_edit_index);
+
+    ui->ttlEdit->setText("");
+    ui->txtEdit->setText("");
+    this->lists->setCurrentWidget(ui->lstArchive);
 
 }
 
