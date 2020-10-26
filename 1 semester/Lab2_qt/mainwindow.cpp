@@ -7,7 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
     , ui(new Ui::MainWindow),
     main_model(new QStandardItemModel),
     arch_model(new QStandardItemModel),
-    lists(new QStackedLayout)
+    lists(new QStackedLayout),
+    keyCtrlS(new QShortcut(this)),
+    keyCtrlN(new QShortcut(this))
 {
     ui->setupUi(this);
 
@@ -31,6 +33,13 @@ MainWindow::MainWindow(QWidget *parent) :
     load_notes_list(main_model, main_data, data);
     load_notes_list(arch_model, archive_data, archive);
 
+
+    keyCtrlS->setKey(Qt::CTRL + Qt::Key_S);
+    connect(keyCtrlS, SIGNAL(activated()), this, SLOT(slotShortcutCtrlS()));
+
+    keyCtrlN->setKey(Qt::CTRL + Qt::Key_N);
+    connect(keyCtrlN, SIGNAL(activated()), this, SLOT(slotShortcutCtrlN()));
+
 }
 
 MainWindow::~MainWindow()
@@ -42,6 +51,7 @@ void MainWindow::on_btnNew_clicked()
 {
 
     ui->btnDelete->hide();
+    ui->lblList->hide();
 
     this->lists->setCurrentWidget(ui->wgtNewnote);
 
@@ -198,12 +208,15 @@ void MainWindow::on_btnArchive_clicked()
 {
 
     this->lists->setCurrentWidget(ui->lstArchive);
+    ui->lblList->setText("Archive");
+
 
 }
 
 void MainWindow::on_btnNotes_clicked()
 {
     this->lists->setCurrentWidget(ui->lstNotes);
+    ui->lblList->setText("Notes");
 }
 
 void MainWindow::on_btnSave_clicked()
@@ -234,6 +247,8 @@ void MainWindow::on_btnSave_clicked()
    this->lists->setCurrentWidget(ui->lstNotes);
 
    ui->btnDelete->show();
+   ui->lblList->show();
+
 
 
 }
@@ -247,7 +262,9 @@ void MainWindow::on_btnArch_clicked()
 
     ui->ttlEdit->setText("");
     ui->txtEdit->setText("");
+    ui->lblList->show();
     this->lists->setCurrentWidget(ui->lstNotes);
+
 
 }
 
@@ -256,6 +273,7 @@ void MainWindow::on_btnCancel_clicked()
 
     ui->ttlEdit->setText("");
     ui->txtEdit->setText("");
+    ui->lblList->show();
     this->lists->setCurrentWidget(ui->lstNotes);
 
 }
@@ -298,6 +316,7 @@ void MainWindow::on_btnDelete_clicked()
 
         ui->ttlEdit->setText("");
         ui->txtEdit->setText("");
+        ui->lblList->show();
         this->lists->setCurrentWidget(ui->lstNotes);
 
     } else if (msgBox.clickedButton() == cancelBtn){
@@ -317,6 +336,7 @@ void MainWindow::on_lstNotes_clicked(const QModelIndex &index)
 
     ui->btnSavechng->show();
     ui->btnDelete->show();
+    ui->lblList->hide();
 
     this->lists->setCurrentWidget(ui->wgtNewnote);
 
@@ -334,6 +354,7 @@ void MainWindow::on_lstArchive_clicked(const QModelIndex &index)
     ui->btnUnarch->show();
     ui->btnCancelarch->show();
     ui->btnDeletearch->show();
+    ui->lblList->hide();
 
 
     this->lists->setCurrentWidget(ui->wgtNewnote);
@@ -376,6 +397,7 @@ void MainWindow::on_btnSavechngArch_clicked()
 
    ui->ttlEdit->setText("");
    ui->txtEdit->setText("");
+   ui->lblList->show();
    this->lists->setCurrentWidget(ui->lstArchive);
 
 }
@@ -389,6 +411,7 @@ void MainWindow::on_btnUnarch_clicked()
 
     ui->ttlEdit->setText("");
     ui->txtEdit->setText("");
+    ui->lblList->show();
     this->lists->setCurrentWidget(ui->lstArchive);
 
 }
@@ -398,6 +421,7 @@ void MainWindow::on_btnCancelarch_clicked()
 
     ui->ttlEdit->setText("");
     ui->txtEdit->setText("");
+    ui->lblList->show();
     this->lists->setCurrentWidget(ui->lstArchive);
 
     ui->btnSavechngArch->hide();
@@ -407,7 +431,6 @@ void MainWindow::on_btnCancelarch_clicked()
 
 
 }
-
 
 void MainWindow::on_btnDeletearch_clicked()
 {
@@ -430,6 +453,7 @@ void MainWindow::on_btnDeletearch_clicked()
 
         ui->ttlEdit->setText("");
         ui->txtEdit->setText("");
+        ui->lblList->show();
         this->lists->setCurrentWidget(ui->lstArchive);
 
     } else if (msgBox.clickedButton() == cancelBtn){
@@ -437,5 +461,26 @@ void MainWindow::on_btnDeletearch_clicked()
        //cancel
 
     }
+
+}
+
+void MainWindow::slotShortcutCtrlS()
+{
+
+    if(ui->btnSavechng->isHidden() && ui->btnSavechngArch->isHidden()){
+        this->on_btnSave_clicked();
+        return;
+    }
+    if(ui->btnSavechngArch->isHidden()){
+        this->on_btnSavechng_clicked();
+        return;
+    }
+    this->on_btnSavechngArch_clicked();
+}
+
+void MainWindow::slotShortcutCtrlN()
+{
+
+    on_btnNew_clicked();
 
 }

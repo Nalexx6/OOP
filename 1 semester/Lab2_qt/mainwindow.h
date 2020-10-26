@@ -10,6 +10,7 @@
 #include <QCloseEvent>
 #include <QVector>
 #include <QFile>
+#include <QShortcut>
 
 #include "note.h"
 //#include "date.h"
@@ -57,6 +58,10 @@ private slots:
 
     void on_btnDeletearch_clicked();
 
+    void slotShortcutCtrlS();
+
+    void slotShortcutCtrlN();
+
 private:
     Ui::MainWindow *ui;
 
@@ -73,6 +78,10 @@ private:
     void add_note_to_table(Note& note, QVector<Note>& list ,QStandardItemModel *model);
     void add_note_to_file(const Note& note, QFile& out);
     void closeEvent (QCloseEvent *event);
+
+    //hotkeys
+    QShortcut *keyCtrlS;
+    QShortcut *keyCtrlN;
 
     //auxiliary methods or variables
     int bin_search(const QVector<Note>& list, Date date);
