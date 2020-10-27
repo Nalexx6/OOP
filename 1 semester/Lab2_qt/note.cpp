@@ -31,7 +31,19 @@ void Note::setDate(const Date &date)
     _date = date;
 }
 
+
+
+QSet<QString> Note::lists() const
+{
+    return _lists;
+}
+
+void Note::setLists(const QSet<QString> &lists)
+{
+    _lists = lists;
+}
+
 Note::Note()
 {
-
+    
 }

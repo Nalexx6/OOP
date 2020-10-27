@@ -2,18 +2,17 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-//#include <QStringListModel>
 #include <QStandardItemModel>
 #include <QMessageBox>
 #include <QDebug>
 #include <QStackedLayout>
 #include <QCloseEvent>
-#include <QVector>
 #include <QFile>
 #include <QShortcut>
+#include <QSet>
+#include <QInputDialog>
 
 #include "note.h"
-//#include "date.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -62,6 +61,8 @@ private slots:
 
     void slotShortcutCtrlN();
 
+    void on_lstLists_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
 
@@ -71,13 +72,19 @@ private:
     //main list of notes and archive containers
     QStandardItemModel *main_model;
     QStandardItemModel *arch_model;
-    QStackedLayout *lists;
+    QStandardItemModel *lists_model;
+
+    QStackedLayout *layout;
+
+    QVector <QString> lists;
 
     //private methods
     void load_notes_list(QStandardItemModel *model, QFile& in,  QVector<Note>& list);
     void add_note_to_table(Note& note, QVector<Note>& list ,QStandardItemModel *model);
     void add_note_to_file(const Note& note, QFile& out);
     void closeEvent (QCloseEvent *event);
+    void load_lists();
+    void save_lists();
 
     //hotkeys
     QShortcut *keyCtrlS;

@@ -31,6 +31,9 @@
     <property name="mouseTracking">
      <bool>true</bool>
     </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::SingleSelection</enum>
+    </property>
     <property name="textElideMode">
      <enum>Qt::ElideLeft</enum>
     </property>
@@ -294,6 +297,40 @@
       <string>Delete</string>
      </property>
     </widget>
+    <widget class="QListView" name="lstLists">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>240</y>
+       <width>121</width>
+       <height>192</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblLists">
+     <property name="geometry">
+      <rect>
+       <x>550</x>
+       <y>210</y>
+       <width>55</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Lists</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="QPushButton" name="btnNew">
     <property name="geometry">
@@ -311,19 +348,6 @@
     </property>
     <property name="text">
      <string>New +</string>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="groupBox">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>150</y>
-      <width>101</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>GroupBox</string>
     </property>
    </widget>
    <widget class="QLabel" name="lblList">

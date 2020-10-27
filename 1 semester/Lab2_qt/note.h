@@ -4,6 +4,7 @@
 #include <iostream>
 #include <QString>
 #include <QVector>
+#include <QSet>
 
 #include "date.h"
 
@@ -15,6 +16,7 @@ private:
     QVector<QString> contexts;
     QString _text;
     Date _date;
+    QSet <QString> _lists;
 
 public:
     Note();
@@ -26,7 +28,9 @@ public:
     void setText(const QString &text);  
     Date date() const;
     void setDate(const Date &date);
-
+;
+    QSet<QString> lists() const;
+    void setLists(const QSet<QString> &lists);
 };
 
 #endif // NOTE_H

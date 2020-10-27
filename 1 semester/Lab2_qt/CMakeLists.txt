@@ -38,6 +38,7 @@ if(ANDROID)
     date.cpp
     date.h
 
+
   )
 else()
   add_executable(Lab2_qt
@@ -49,6 +50,7 @@ else()
     note.h
     date.cpp
     date.h
+
 
   )
 endif()
