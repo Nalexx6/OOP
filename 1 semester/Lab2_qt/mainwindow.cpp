@@ -266,11 +266,86 @@ void MainWindow::save_lists()
     out.close();
 }
 
+void MainWindow::delete_list(QString &to_delete)
+{
+
+    QSet <QString> temp;
+    for(int i = 0; i < data.size(); i++){
+
+        temp = data[i].lists();
+        if(temp.contains(to_delete)){
+            temp.remove(to_delete);
+            data[i].setLists(temp);
+
+            QString note_descr = data[i].title() + "\t";
+            if(temp.size() > 0)
+                note_descr += "lists: ";
+            for(auto& i: temp){
+
+                note_descr += i + "; ";
+
+            }
+
+            auto item = new QStandardItem(note_descr);
+            main_model->setItem(i, item);
+        }
+
+
+    }
+
+    for(int i = 0; i < archive.size(); i++){
+
+        temp = archive[i].lists();
+        if(temp.contains(to_delete)){
+            temp.remove(to_delete);
+            archive[i].setLists(temp);
+
+            QString note_descr = archive[i].title() + "\t";
+            if(temp.size() > 0)
+                note_descr += "lists: ";
+            for(auto& i: temp){
+
+                note_descr += i + "; ";
+
+            }
+
+            auto item = new QStandardItem(note_descr);
+            main_model->setItem(i, item);
+        }
+
+
+    }
+
+}
+
 void MainWindow::on_lstLists_clicked(const QModelIndex &index)
 {
 
     if(index.row() != 0){
+
+        QMessageBox msgBox;
+        msgBox.setText("Do you want to delete this list?");
+        QPushButton *yesBtn = msgBox.addButton(QMessageBox::Yes);
+        QPushButton *cancelBtn = msgBox.addButton(QMessageBox::Cancel);
+
+        msgBox.exec();
+
+        if (msgBox.clickedButton() == yesBtn) {
+
+            delete_list(lists[index.row() - 1] );
+            lists.erase(lists.begin() + index.row() - 1);
+            lists_model->removeRow(index.row());
+
+
+
+
+        } else if (msgBox.clickedButton() == cancelBtn){
+
+           //cancel
+
+        }
         return;
+
     }
 
 

@@ -94,6 +94,8 @@ private:
     int bin_search(const QVector<Note>& list, Date date);
     int main_edit_index;
     int arch_edit_index;
+    void delete_list(QString& to_delete);
+
 
 
 
