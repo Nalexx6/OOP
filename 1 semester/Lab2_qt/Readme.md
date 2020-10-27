@@ -2,7 +2,7 @@ Variant 2(Notes app) Required tasks:
 
   ~Quick creation of new note(by "New+" button)
   
-  ~Basic functions provided: save changes, delete note, cancel 
+  ~Basic functions provided: save changes or edit all features of existing note, delete note, cancel 
   
   ~Two lists (main list and archive) of notes, can be switched beetwen corresponding buttons
   
