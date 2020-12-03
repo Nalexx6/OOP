@@ -45,8 +45,8 @@ int Haar_cascades::run() {
 //    cv::String face_cascade_name = cv::samples::findFile( parser.get<cv::String>("face_cascade") );
 //    cv::String eyes_cascade_name = cv::samples::findFile( parser.get<cv::String>("eyes_cascade") );
 
-    cv::String face_cascade_name = cv::samples::findFile( "/run/media/nalexx/data/opencv-3.4/data/haarcascades/haarcascade_frontalface_alt.xml" );
-    cv::String eyes_cascade_name = cv::samples::findFile( "/run/media/nalexx/data/opencv-3.4/data/haarcascades/haarcascade_eye_tree_eyeglasses.xml");
+    cv::String face_cascade_name = "/run/media/nalexx/data/opencv-3.4/data/haarcascades/haarcascade_frontalface_alt.xml" ;
+    cv::String eyes_cascade_name = "/run/media/nalexx/data/opencv-3.4/data/haarcascades/haarcascade_eye_tree_eyeglasses.xml";
 
     //-- 1. Load the cascades
     if( !face_cascade.load( face_cascade_name ) )
@@ -61,7 +61,7 @@ int Haar_cascades::run() {
     };
     int camera_device = 0;
     cv::VideoCapture capture;
-    //-- 2. Read the video stream
+//    -- 2. Read the video stream
     capture.open( camera_device );
     if ( ! capture.isOpened() )
     {
@@ -78,7 +78,7 @@ int Haar_cascades::run() {
         }
         //-- 3. Apply the classifier to the frame
         detectAndDisplay( frame );
-        if( cv::waitKey(20) == 27 )
+        if( cv::waitKey(10) == 27)//ESC key is pressed
         {
             break; // escape
         }
