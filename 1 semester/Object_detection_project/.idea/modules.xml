@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Template_matching.iml" filepath="$PROJECT_DIR$/.idea/Template_matching.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Object_detection_project.iml" filepath="$PROJECT_DIR$/.idea/Object_detection_project.iml" />
     </modules>
   </component>
 </project>
