@@ -13,7 +13,7 @@ def findClickPositions(needle_img_path, haystack_img_path, threshold=0.5, debug_
     # There are 6 methods to choose from:
     # TM_CCOEFF, TM_CCOEFF_NORMED, TM_CCORR, TM_CCORR_NORMED, TM_SQDIFF, TM_SQDIFF_NORMED
     method = cv.TM_CCOEFF_NORMED
-    result = cv.matchTemplate(haystack_img, needle_img, method)
+    result = cv.matchTemplate(haystack_img, needle_img, method) 
 
     locations = np.where(result >= threshold)
     locations = list(zip(*locations[::-1]))
