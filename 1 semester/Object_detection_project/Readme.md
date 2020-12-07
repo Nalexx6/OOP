@@ -22,3 +22,4 @@ Tutorials:
 
   ~ https://www.youtube.com/watch?v=KecMlLUuiE4&list=PL1m2M8LQlzfKtkKq2lK5xko4X-8EZzFPI (OpenCv in Python, but for Cascade Training you need 8th video)
   
+  ~https://www.youtube.com/watch?v=oXlwWbU8l2o&t=6s&ab_channel=freeCodeCamp.org (this tutorial provides basic image processing techniques in OpenCV using Python. Would be useful, if you want to work with this library not only for Cascade Training)
