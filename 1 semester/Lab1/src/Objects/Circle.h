@@ -42,4 +42,6 @@ bool operator == (figures::Circle a, figures::Circle b);
 
 
 
+
+
 #endif //LAB1_CIRCLE_H

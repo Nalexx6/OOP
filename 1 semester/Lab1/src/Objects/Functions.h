@@ -17,24 +17,6 @@
 
 namespace figures {
 
-
-
-//    namespace {
-//
-//        //calculate distance between 2 points
-//        static double point_distance(Point &a, Point &b);
-//
-//        //find the point which belongs to particular line and has the minimum distance to particular point
-//        static Point point_line_distance(Point &point, Line &line);
-//
-//        //return the line for which particular points belong to
-//        static Line build_line(Point &a, Point &b);
-//
-//        //create inverted image of the point
-//        static Point image(Circle &circle, Point &point);
-//
-//    }
-
     //find the intersection point between 2 lines(vector is empty if line are parallel)
     static std::vector<Point> intersection(Line &line1, Line &line2);
 
