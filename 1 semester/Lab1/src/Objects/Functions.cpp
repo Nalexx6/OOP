@@ -5,38 +5,84 @@
 
 #include "Functions.h"
 
-double Functions::point_distance(Functions::Point &a, Functions::Point &b) {
+namespace {
 
-    return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+    double point_distance(figures::Point &a, figures::Point &b) {
+
+        return sqrt((a.x() - b.x()) * (a.x() - b.x()) + (a.y() - b.y()) * (a.y() - b.y()));
+
+    }
+
+    figures::Point point_line_distance(figures::Point &point, figures::Line &line) {
+
+//    figures::Point res{};
+
+        double x0 = (line.b() * (line.b() * point.x() - line.a() * point.y()) - line.a() * line.c())
+                    / (pow(line.a(), 2) + pow(line.b(), 2));
+
+        double y0 = (line.a() * (-line.b() * point.x() + line.a() * point.y()) - line.b() * line.c())
+                    / (pow(line.a(), 2) + pow(line.b(), 2));
+
+        return figures::Point(x0, y0);
+
+    }
+
+    figures::Line build_line(figures::Point &a, figures::Point &b) {
+
+        return *new figures::Line(b.y() - a.y(), a.x() - b.x(),  -a.x() * b.y() + a.y() * b.x());
+
+    }
+
+    figures::Point image(figures::Circle &circle, figures::Point& point) {
+
+        auto* center = new figures::Point(circle.center().x(), circle.center().y());
+        figures::Line directive = build_line(*center, point);
+//    std::cout<<"center: x " << center->x << " y " << center->y <<std::endl;
+//    std::cout<<"directive: x " << directive._a() << " y " << directive._b() <<std::endl;
+
+
+
+        double distance = pow(circle.radius(), 2) / point_distance(*center, point);
+        double norm = sqrt(pow(distance, 2) / (pow(directive.a(), 2) + pow(directive.b(), 2)));
+
+        double x1 = center->x() + directive.b() * norm;
+        double y1 = center->y() - directive.a() * norm;
+        double x2 = center->x() - directive.b() * norm;
+        double y2 = center->y() + directive.a() * norm;
+
+        auto* first = new figures::Point(x1, y1);
+        auto* second = new figures::Point(x2, y2);
+
+//    std::cout<<"first: x " << first->x << " y " << first->y <<std::endl;
+//    std::cout<<"second: x " << second->x << " y " << second->y <<std::endl;
+
+        double first_dis = point_distance(*center, *first);
+        double second_dis = point_distance(point, *first);
+
+        if (first_dis > second_dis) {
+
+            return *first;
+
+        } else
+            return *second;
+
+
+    }
 
 }
 
-Functions::Point Functions::point_line_distance(Functions::Point &point, Line &line) {
-
-    Point res{};
-
-    res.x = (line._b() * ( line._b() * point.x - line._a() * point.y) - line._a() * line._c())
-            / (pow(line._a(), 2) + pow(line._b(), 2));
-
-    res.y = (line._a() * ( -line._b() * point.x + line._a() * point.y) - line._b() * line._c())
-            / (pow(line._a(), 2) + pow(line._b(), 2));
-
-    return res;
-
-}
-
-std::vector<Functions::Point> Functions::intersection(Line &line1, Line &line2) {
+std::vector<figures::Point> figures::intersection(Line &line1, Line &line2) {
 
     std::vector<Point> res;
 
-    if(line1._a() / line1._b() == line2._a() / line2._b()){
+    if(line1.a() / line1.b() == line2.a() / line2.b()){
 
         return res;
 
     }
 
-    double x = - (line1._c() * line2._b() - line1._b() * line2._c()) / (line1._a() * line2._b() - line1._b() * line2._a());
-    double y = - (line1._a() * line2._c() - line1._c() * line2._a()) / (line1._a() * line2._b() - line1._b() * line2._a());
+    double x = - (line1.c() * line2.b() - line1.b() * line2.c()) / (line1.a() * line2.b() - line1.b() * line2.a());
+    double y = - (line1.a() * line2.c() - line1.c() * line2.a()) / (line1.a() * line2.b() - line1.b() * line2.a());
 
     res.emplace_back(Point(x, y));
 
@@ -44,11 +90,11 @@ std::vector<Functions::Point> Functions::intersection(Line &line1, Line &line2) 
 
 }
 
-std::vector<Functions::Point> Functions::intersection(Line &line, Circle &circle) {
+std::vector<figures::Point> figures::intersection(Line &line, Circle &circle) {
 
     std::vector<Point> res;
 
-    Point center = Point(circle._a(), circle._b());
+    Point center = circle.center();
 
 //    std::cout<<"Center "<<center.x << " "<< center.y <<"\n";
 
@@ -59,41 +105,42 @@ std::vector<Functions::Point> Functions::intersection(Line &line, Circle &circle
 
     double distance = point_distance(min, center);
 
-    if(distance > circle._c())
+    if(distance > circle.radius())
         return res;
 
-    if(distance == circle._c()){
+    if(distance == circle.radius()){
 
         res.emplace_back(min);
         return res;
 
     }
 
-    Point first{}, second{};
-//    std::cout<<"distance "<< distance << "\n";
+    double x, y;
+    //    std::cout<<"distance "<< distance << "\n";
 
-    double norm = sqrt( (pow(circle._c(), 2) - pow(line._c(), 2) / ( pow(line._a(), 2) + pow(line._b(), 2))) /
-                                (pow(line._a(), 2) + pow(line._b(), 2)));
+    double norm = sqrt( (pow(circle.radius(), 2) - pow(line.c(), 2) / ( pow(line.a(), 2) +
+            pow(line.b(), 2))) / (pow(line.a(), 2) + pow(line.b(), 2)));
 
-    first.x = min.x + line._b() * norm;
-    first.y = min.y - line._a() * norm;
+    x = min.x() + line.b() * norm;
+    y = min.y() - line.a() * norm;
 
-    second.x = min.x - line._b() * norm;
-    second.y = min.y + line._a() * norm;
+    res.emplace_back(Point(x, y));
 
-    res.emplace_back(first);
-    res.emplace_back(second);
+    x = min.x() - line.b() * norm;
+    y = min.y() + line.a() * norm;
+
+    res.emplace_back(Point(x, y));
 
     return  res;
 
 }
 
-std::vector<Functions::Point> Functions::intersection(Circle &circle1, Circle &circle2) {
+std::vector<figures::Point> figures::intersection(Circle &circle1, Circle &circle2) {
 
-    double a = 2 * (circle1._a() - circle2._a());
-    double b = 2 * (circle1._b() - circle2._b());
-    double c = pow(circle2._a(), 2) + pow(circle2._b(), 2) - pow(circle2._c(), 2) -
-               (pow(circle1._a(), 2) - pow(circle1._b(), 2) - pow(circle1._c(), 2));
+    double a = 2 * (circle1.center().x() - circle2.center().x());
+    double b = 2 * (circle1.center().y() - circle2.center().y());
+    double c = pow(circle2.center().x(), 2) + pow(circle2.center().y(), 2) - pow(circle2.radius(), 2) -
+               (pow(circle1.center().y(), 2) - pow(circle1.center().y(), 2) - pow(circle1.radius(), 2));
 
     Line* line = new Line(a, b, c);
 
@@ -101,38 +148,31 @@ std::vector<Functions::Point> Functions::intersection(Circle &circle1, Circle &c
 
 }
 
-Line Functions::build_line(Functions::Point &a, Functions::Point &b) {
 
-    return *new Line(b.y - a.y, a.x - b.x,  -a.x * b.y + a.y * b.x);
-
-}
-
-Line Functions::sym_display(Line &line, Line &to_sym) {
-
+figures::Line figures::sym_display(Line &line, Line &to_sym) {
 
 
     std::vector points = intersection(line, to_sym);
 
-
     if(points.empty()){
 
-        return *new Line(to_sym._a(), to_sym._b(), 2 * to_sym._c() - to_sym._c());
+        return *new Line(to_sym.a(), to_sym.b(), 2 * to_sym.c() - to_sym.c());
 
     }
 
-    if(line._a() == 0 || line._b() == 0){
+    if(line.a() == 0 || line.b() == 0){
 
-        return *new Line(-to_sym._a(), to_sym._b(), to_sym._c());
+        return *new Line(-to_sym.a(), to_sym.b(), to_sym.c());
 
     }
 
 //    std::cout<< "x " <<points[0].x<< " y " << points[0].y<<std::endl;
 
-    auto* second = new Point(0, -to_sym._c() / to_sym._b());
+    auto* second = new Point(0, -to_sym.c() / to_sym.b());
 
-    if(second->x == points[0].x && second->y == points[0].y){
+    if(*second == points[0]){
 
-        second = new Point(-to_sym._c() / to_sym._a(), 0);
+        second = new Point(-to_sym.c() / to_sym.a(), 0);
 
     }
 
@@ -141,7 +181,7 @@ Line Functions::sym_display(Line &line, Line &to_sym) {
 
     Point min = point_line_distance(*second, line);
 
-    auto* display = new Point(2 * min.x - second->x, 2 * min.y - second->y);
+    auto* display = new Point(2 * min.x() - second->x(), 2 * min.y() - second->y());
 
 //    std::cout<< "x " <<display->x<< " y " << display->y<<std::endl;
 
@@ -150,56 +190,20 @@ Line Functions::sym_display(Line &line, Line &to_sym) {
 
 }
 
-Circle Functions::sym_display(Line &line, Circle &to_sym) {
+figures::Circle figures::sym_display(Line &line, Circle &to_sym) {
 
     Circle* res;
 
-    Point center = Point(to_sym._a(), to_sym._b());
+    Point center = to_sym.center();
     Point min = point_line_distance(center, line);
 
-    return *new Circle(2 * min.x - center.x, 2 * min.y - center.y, to_sym._c());
+    return *new Circle(Point(2 * min.x() - center.x(), 2 * min.y() - center.y()), to_sym.radius());
 
 }
 
-Functions::Point Functions::image(Circle &circle, Functions::Point& point) {
+figures::Circle figures::inversion(Circle &circle, Line &to_invert) {
 
-    auto* center = new Point(circle._a(), circle._b());
-    Line directive = build_line(*center, point);
-//    std::cout<<"center: x " << center->x << " y " << center->y <<std::endl;
-//    std::cout<<"directive: x " << directive._a() << " y " << directive._b() <<std::endl;
-
-
-
-    double distance = pow(circle._c(), 2) / point_distance(*center, point);
-    double norm = sqrt(pow(distance, 2) / (pow(directive._a(), 2) + pow(directive._b(), 2)));
-
-    double x1 = center->x + directive._b() * norm;
-    double y1 = center->y - directive._a() * norm;
-    double x2 = center->x - directive._b() * norm;
-    double y2 = center->y + directive._a() * norm;
-
-    auto* first = new Point(x1, y1);
-    auto* second = new Point(x2, y2);
-
-//    std::cout<<"first: x " << first->x << " y " << first->y <<std::endl;
-//    std::cout<<"second: x " << second->x << " y " << second->y <<std::endl;
-
-    double first_dis = point_distance(*center, *first);
-    double second_dis = point_distance(point, *first);
-
-    if (first_dis > second_dis) {
-
-        return *first;
-
-    } else
-        return *second;
-
-
-}
-
-Circle Functions::inversion(Circle &circle, Line &to_invert) {
-
-    auto* center = new Point(circle._a(), circle._b());
+    auto* center = new Point(circle.center().x(), circle.center().y());
     Point min = point_line_distance(*center, to_invert);
 //    std::cout<<"inverted: x " << min.x << " y " << min.y <<std::endl;
 
@@ -207,20 +211,21 @@ Circle Functions::inversion(Circle &circle, Line &to_invert) {
     Point inverted = image(circle, min);
 //    std::cout<<"inverted: x " << inverted.x << " y " << inverted.y <<std::endl;
 
-    return *new Circle((center->x + inverted.x) / 2, (center->y + inverted.y) / 2, point_distance(*center, inverted) / 2);
+    return *new Circle(Point((center->x() + inverted.x()) / 2, (center->y() + inverted.y()) / 2),
+                       point_distance(*center, inverted) / 2);
 
 }
 
-Line Functions::inversion(Circle &circle, Circle &to_invert) {
+figures::Line figures::inversion_cross(Circle &circle, Circle &to_invert) {
 
-    auto* first = new Point (to_invert._a(), to_invert._b() + to_invert._c());
-    auto* second = new Point (to_invert._a() + to_invert._c(), to_invert._b());
+    auto* first = new Point (to_invert.center().x(), to_invert.center().y() + to_invert.radius());
+    auto* second = new Point (to_invert.center().x() + to_invert.radius(), to_invert.center().y());
 
-    if(first->x == circle._a() && first->y == circle._b())
-        first = new Point (to_invert._a(), to_invert._b() - to_invert._c());
+    if(*first == circle.center())
+        first = new Point (to_invert.center().x(), to_invert.center().y() - to_invert.radius());
 
-    if(second->x == circle._a() && second->y == circle._b())
-        second = new Point (to_invert._a() - to_invert._c(), to_invert._b());
+    if(*second == circle.center())
+        second = new Point (to_invert.center().x() - to_invert.radius(), to_invert.center().y());
 
     *first = image(circle, *first);
     *second = image(circle, *second);
@@ -230,74 +235,78 @@ Line Functions::inversion(Circle &circle, Circle &to_invert) {
 
 }
 
-Circle Functions::inversion_c(Circle &circle, Circle &to_invert) {
+figures::Circle figures::inversion(Circle &circle, Circle &to_invert) {
 
-    double norm = pow(circle._c(), 2) / (pow(to_invert._a() - circle._a(), 2) + pow(to_invert._b() - circle._b(), 2) - pow(to_invert._c(), 2));
+    double norm = pow(circle.radius(), 2) /
+            (pow(to_invert.center().x() - circle.center().x(), 2) +
+            pow(to_invert.center().y() - circle.center().y(), 2) - pow(to_invert.radius(), 2));
 
-    double x = circle._a() + norm * (to_invert._a() - circle._a());
-    double y = circle._b() + norm * (to_invert._b() - circle._b());
+    double x = circle.center().x() + norm * (to_invert.center().x() - circle.center().x());
+    double y = circle.center().y() + norm * (to_invert.center().y() - circle.center().y());
 
-    double r = std::abs(norm) * to_invert._c();
+    double radius = std::abs(norm) * to_invert.radius();
 
-    return *new Circle(x, y, r);
+    return *new Circle(Point(x, y), radius);
 
 }
 
-namespace test_figures_functions{
+
+
+namespace test_figures_figures{
 
     void test_intersection() {
 
-        Line* line1 = new Line(1, 1, -1);
-        Line* line2 = new Line(-3, 1, 2);
+        figures::Line* line1 = new figures::Line(1, 1, -1);
+        figures::Line* line2 = new figures::Line(-3, 1, 2);
 
-        std::vector<Functions::Point> res = Functions::intersection(*line1, *line2);
+        std::vector<figures::Point> res = figures::intersection(*line1, *line2);
 
         CHECK(res.size() == 1);
-        CHECK(res[0].x == 0.75);
-        CHECK(res[0].y == 0.25);
+        CHECK(res[0].x() == 0.75);
+        CHECK(res[0].y() == 0.25);
 
-        line2 = new Line( 2, 2, -2);
+        line2 = new figures::Line( 2, 2, -2);
 
-        res = Functions::intersection(*line1, *line2);
+        res = figures::intersection(*line1, *line2);
 
         //checking intersection for parallel lines
         CHECK(res.size() == 0);
 
-        auto* circle1 = new Circle(0, 0, 1);
-        auto* circle2 = new Circle(1, 1, sqrt(2) / 2);
+        auto* circle1 = new figures::Circle(figures::Point(0, 0), 1);
+        auto* circle2 = new figures::Circle(figures::Point(1, 1), sqrt(2) / 2);
 
-        res = Functions::intersection(*line1, *circle2);
+        res = figures::intersection(*line1, *circle2);
 
         //checking the line is tangent
         CHECK(res.size() == 1);
-        CHECK(res[0].x == 0.5);
-        CHECK(res[0].y == 0.5);
+        CHECK(res[0].x() == 0.5);
+        CHECK(res[0].y() == 0.5);
 
-        res = Functions::intersection(*line1, *circle1);
+        res = figures::intersection(*line1, *circle1);
 
         //check the line crosses the circle in 2 points
         CHECK(res.size() == 2);
-        bool point = (res[0].x == 1 && res[0].y == 0) || (res[0].x == 0 && res[0].y == 1);
+        bool point = (res[0].x() == 1 && res[0].y() == 0) || (res[0].x() == 0 && res[0].y() == 1);
         CHECK(point);
-        point = (res[1].x == 1 && res[1].y == 0) || (res[1].x == 0 && res[1].y == 1);
+        point = (res[1].x() == 1 && res[1].y() == 0) || (res[1].x() == 0 && res[1].y() == 1);
         CHECK(point);
 
-        circle2 = new Circle(1, 0, 1);
-        res = Functions::intersection(*circle1, *circle2);
+        circle2 = new figures::Circle(figures::Point(1, 0), 1);
+        res = figures::intersection(*circle1, *circle2);
 
         //check circles intersect in 2 points
         CHECK(res.size() == 2);
-        point = (res[0].x == 0.5 && (res[0].y == sqrt(3) / 2 || res[0].y == - sqrt(3) / 2));
+        point = (res[0].x() == 0.5 && (res[0].y() == sqrt(3) / 2 || res[0].y() == - sqrt(3) / 2));
         CHECK(point);
-        point = (res[1].x == 0.5 && (res[1].y == sqrt(3) / 2 || res[1].y == - sqrt(3) / 2));
+        point = (res[1].x() == 0.5 && (res[1].y() == sqrt(3) / 2 || res[1].y() == - sqrt(3) / 2));
         CHECK(point);
 
-        circle2 = new Circle(2, 0, 1);
-        res = Functions::intersection(*circle1, *circle2);
+        circle2 = new figures::Circle(figures::Point(2, 0), 1);
+        res = figures::intersection(*circle1, *circle2);
 
         //check circles are tangent
         CHECK(res.size() == 1);
-        point = (res[0].x == 1 && res[0].y == 0);
+        point = (res[0].x() == 1 && res[0].y() == 0);
         CHECK(point);
 
 
@@ -306,27 +315,27 @@ namespace test_figures_functions{
     }
     void test_sym_display(){
 
-        Line* line1 = new Line(1, 1, -1);
-        Line* line2 = new Line(-3, 1, 2);
+        auto* line1 = new figures::Line(1, 1, -1);
+        auto* line2 = new figures::Line(-3, 1, 2);
 
-        Line res = Functions::sym_display(*line1, *line2);
+        figures::Line res = figures::sym_display(*line1, *line2);
 
         //check symmetric display(lines intersects)
-        CHECK(res._a() / res._b() == double (-1) / 3);
-        CHECK(res._c() == 0);
+        CHECK(res.a() / res.b() == double (-1) / 3);
+        CHECK(res.c() == 0);
 
-        line2 = new Line(2, 2, -3);
+        line2 = new figures::Line(2, 2, -3);
 
-        res = Functions::sym_display(*line1, *line2);
+        res = figures::sym_display(*line1, *line2);
         //check symmetric display(lines parallel)
-        CHECK(res._a() / res._b() == line1->_a() / line1->_b());
+        CHECK(res.a() / res.b() == line1->a() / line1->b());
 
-        auto* circle1 = new Circle(0, 0, 1);
+        auto* circle1 = new figures::Circle(figures::Point(0, 0), 1);
 
-        Circle res1 = Functions::sym_display(*line1, *circle1);
+        figures::Circle res1 = figures::sym_display(*line1, *circle1);
 
-        CHECK(res1._a() == 1);
-        CHECK(res1._b() == 1);
+        CHECK(res1.center().x() == 1);
+        CHECK(res1.center().y() == 1);
 
 
 
@@ -339,11 +348,11 @@ namespace test_figures_functions{
 
 }
 
-TEST_CASE("[figures] - checking all functions"){
+TEST_CASE("[figures] - checking all figures"){
 
-    test_figures_functions::test_intersection();
-    test_figures_functions::test_sym_display();
-    test_figures_functions::test_inversion();
+    test_figures_figures::test_intersection();
+    test_figures_figures::test_sym_display();
+    test_figures_figures::test_inversion();
 
 }
 

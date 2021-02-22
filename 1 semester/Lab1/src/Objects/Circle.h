@@ -5,39 +5,41 @@
 #ifndef LAB1_CIRCLE_H
 #define LAB1_CIRCLE_H
 
-#include "Figure.h"
+#include "Point.h"
+namespace figures {
 
-class Circle : public Figure {
+    class Circle {
 
-    //variables
-    double x0{};//x coordinate of center of circle
-    double y0{};//y coordinate of center of circle
-    double radius{};//radius of circle
+        //variables
+        Point _center{};
+        double _radius{};
 
-public:
+    public:
 
-    //constructor, destructor
+        //constructor, destructor
 
-    Circle() = default;
-    explicit Circle(const double& x, const double& y, const double& radius){
+        Circle() = default;
 
-        this->x0 = x;
-        this->y0 = y;
-        this->radius = radius;
+        explicit Circle(const Point& center, const double &radius) {
 
-    }
+            this->_center = center;
+            this->_radius = radius;
 
-    ~Circle() override = default;
+        }
 
-    //getters
+        ~Circle() = default;
 
-    double _a() override { return this->x0; }
-    double _b() override { return this->y0; }
-    double _c() override { return this->radius; }
+        //getters
+
+        [[nodiscard]] Point center() const { return this->_center; }
+        [[nodiscard]] double radius() const { return this->_radius; }
+
+    };
+
+}
+
+bool operator == (figures::Circle a, figures::Circle b);
 
 
-};
-
-bool operator == (Circle a, Circle b);
 
 #endif //LAB1_CIRCLE_H

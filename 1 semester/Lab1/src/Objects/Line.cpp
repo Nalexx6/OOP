@@ -4,9 +4,9 @@
 
 #include "Line.h"
 
-bool operator==(Line a, Line b) {
+bool operator==(figures::Line a, figures::Line b) {
 
-    return  a._a() == b._a() && a._b() == b._b() && a._c() == b._c();
+    return  a.a() == b.a() && a.b() == b.b() && a.c() == b.c();
 
 }
 

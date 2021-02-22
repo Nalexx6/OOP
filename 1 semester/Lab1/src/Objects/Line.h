@@ -5,44 +5,44 @@
 #ifndef LAB1_LINE_H
 #define LAB1_LINE_H
 
-#include "Figure.h"
+namespace figures {
 
-class Line : public Figure {
+    class Line {
 
-private:
+    private:
 
-    //variables
-    //line corresponds to equation Ax + By + C = 0, variables are corresponding coefficients
-    double a;
-    double b;
-    double c;
+        //line corresponds to equation Ax + By + C = 0, variables are corresponding coefficients
+        double _a{};
+        double _b{};
+        double _c{};
 
-public:
+    public:
 
-    //constructor, destructor
+        //constructor, destructor
 
-    Line() = default;
-    Line(const double& a, const double& b, const double& c){
+        Line() = default;
 
-        this->a = a;
-        this->b = b;
-        this->c = c;
+        Line(const double &a, const double &b, const double &c) {
 
-    }
+            this->_a = a;
+            this->_b = b;
+            this->_c = c;
 
-    ~Line() override = default;
+        }
 
-    //getters
+        ~Line()= default;
 
-    double _a() override { return this->a; }
-    double _b() override { return this->b; }
-    double _c() override { return this->c; }
+        //getters
+
+        [[nodiscard]] double a() const { return this->_a; }
+        [[nodiscard]] double b() const{ return this->_b; }
+        [[nodiscard]] double c() const { return this->_c; }
+
+    };
 
 
+}
 
-};
-
-bool operator == (Line a, Line b);
-
+bool operator==(figures::Line a, figures::Line b);
 
 #endif //LAB1_LINE_H

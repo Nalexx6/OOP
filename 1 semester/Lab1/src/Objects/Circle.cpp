@@ -4,9 +4,9 @@
 
 #include "Circle.h"
 
-bool operator==(Circle a, Circle b) {
+bool operator==(figures::Circle a, figures::Circle b) {
 
-    return a._a() == b._a() && a._b() == b._b() && a._c() == b._c();
+    return a.center() == b.center() && a.radius() == b.radius();
 
 }
 
