@@ -2,8 +2,8 @@
 // Created by Win10Pro on 2/22/2021.
 //
 
-#include "../src/Objects/Functions.h"
-#include "../src/Objects/Functions.cpp"
+#include "../src/Figures//Functions.h"
+#include "../src/Figures//Functions.cpp"
 
 #include "../src/doctest.h"
 

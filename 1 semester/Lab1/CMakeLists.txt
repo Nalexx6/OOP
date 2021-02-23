@@ -4,6 +4,6 @@ project(Lab1)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(Lab1 main.cpp "src/Data structures/Graph.h" "src/Data structures/Matrix_graph.h" "src/Data structures/List_graph.h"
-        src/Objects/Functions.cpp src/Objects/Functions.h src/Objects/Circle.h src/Objects/Line.h src/doctest.h
-        src/Objects/Circle.cpp src/Objects/Line.cpp "UnitTests/Graphs_tests.cpp"
-        src/Objects/Point.cpp src/Objects/Point.h UnitTests/FiguresTests.cpp)
+        src/Figures/Functions.cpp src/Figures/Functions.h src/Figures/Circle.h src/Figures/Line.h
+        src/Figures/Circle.cpp src/Figures/Line.cpp src/Figures/Point.cpp src/Figures/Point.h
+        src/doctest.h UnitTests/Graphs_tests.cpp UnitTests/FiguresTests.cpp)
