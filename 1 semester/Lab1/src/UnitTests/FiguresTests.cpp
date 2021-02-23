@@ -2,8 +2,14 @@
 // Created by Win10Pro on 2/22/2021.
 //
 
-#include "../Figures/Functions.h"
-#include "../Figures/Functions.cpp"
+//#include "../Figures/Functions.h"
+//#include "../Figures/Functions.cpp"
+
+#include "D:/UniversityLabs/Figures/include/Figures/Functions.h"
+#include "D:/UniversityLabs/Figures/include/Figures/Functions.cpp"
+
+
+//#include
 
 #include "../doctest.h"
 

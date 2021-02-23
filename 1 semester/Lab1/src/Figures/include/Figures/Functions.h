@@ -7,7 +7,7 @@
 
 #include "Circle.h"
 #include "Line.h"
-#include "../doctest.h"
+//#include "../doctest.h"
 
 
 #include <cmath>
