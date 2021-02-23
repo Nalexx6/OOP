@@ -2,10 +2,10 @@
 // Created by Win10Pro on 29.09.2020.
 //
 
-#include "../src/Data structures/Matrix_graph.h"
-#include "../src/Data structures/List_graph.h"
+#include "../Data structures/Matrix_graph.h"
+#include "../Data structures/List_graph.h"
 
-#include "../src/doctest.h"
+#include "../doctest.h"
 
 namespace test_graph_functions{
 

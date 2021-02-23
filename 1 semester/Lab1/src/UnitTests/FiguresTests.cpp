@@ -2,10 +2,10 @@
 // Created by Win10Pro on 2/22/2021.
 //
 
-#include "../src/Figures//Functions.h"
-#include "../src/Figures//Functions.cpp"
+#include "../Figures/Functions.h"
+#include "../Figures/Functions.cpp"
 
-#include "../src/doctest.h"
+#include "../doctest.h"
 
 namespace test_figures_functions{
 
