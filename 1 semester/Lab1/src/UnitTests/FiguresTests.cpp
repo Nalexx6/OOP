@@ -7,30 +7,36 @@
 
 #include "../doctest.h"
 
-namespace test_figures_functions{
+namespace testFiguresFunctions{
 
-    void test_intersection() {
+    //intersection
+    void testLinesIntersection(){
 
-        figures::Line* line1 = new figures::Line(1, 1, -1);
-        figures::Line* line2 = new figures::Line(-3, 1, 2);
+        auto* line1 = new figures::Line(1, 1, -1);
+        auto* line2 = new figures::Line(-3, 1, 2);
 
         std::vector<figures::Point> res = figures::intersection(*line1, *line2);
 
-                CHECK(res.size() == 1);
-                CHECK(res[0].x() == 0.75);
-                CHECK(res[0].y() == 0.25);
+        CHECK(res.size() == 1);
+        CHECK(res[0].x() == 0.75);
+        CHECK(res[0].y() == 0.25);
 
         line2 = new figures::Line( 2, 2, -2);
 
         res = figures::intersection(*line1, *line2);
 
         //checking intersection for parallel lines
-                CHECK(res.size() == 0);
+        CHECK(res.size() == 0);
 
+    }
+
+    void testLineCircleIntersection(){
+
+        auto* line1 = new figures::Line(1, 1, -1);
         auto* circle1 = new figures::Circle(figures::Point(0, 0), 1);
         auto* circle2 = new figures::Circle(figures::Point(1, 1), sqrt(2) / 2);
 
-        res = figures::intersection(*line1, *circle2);
+        std::vector<figures::Point> res = figures::intersection(*line1, *circle2);
 
         //checking the line is tangent
                 CHECK(res.size() == 1);
@@ -40,35 +46,49 @@ namespace test_figures_functions{
         res = figures::intersection(*line1, *circle1);
 
         //check the line crosses the circle in 2 points
-                CHECK(res.size() == 2);
+        CHECK(res.size() == 2);
         bool point = (res[0].x() == 1 && res[0].y() == 0) || (res[0].x() == 0 && res[0].y() == 1);
-                CHECK(point);
+        CHECK(point);
         point = (res[1].x() == 1 && res[1].y() == 0) || (res[1].x() == 0 && res[1].y() == 1);
-                CHECK(point);
+        CHECK(point);
 
-        circle2 = new figures::Circle(figures::Point(1, 0), 1);
-        res = figures::intersection(*circle1, *circle2);
+
+    }
+
+    void testCirclesIntersection(){
+
+        auto* circle1 = new figures::Circle(figures::Point(0, 0), 1);
+        auto* circle2 = new figures::Circle(figures::Point(1, 0), 1);
+        std::vector<figures::Point> res = figures::intersection(*circle1, *circle2);
 
         //check circles intersect in 2 points
-                CHECK(res.size() == 2);
-        point = (res[0].x() == 0.5 && (res[0].y() == sqrt(3) / 2 || res[0].y() == - sqrt(3) / 2));
-                CHECK(point);
+        CHECK(res.size() == 2);
+        bool point = (res[0].x() == 0.5 && (res[0].y() == sqrt(3) / 2 || res[0].y() == - sqrt(3) / 2));
+        CHECK(point);
         point = (res[1].x() == 0.5 && (res[1].y() == sqrt(3) / 2 || res[1].y() == - sqrt(3) / 2));
-                CHECK(point);
+        CHECK(point);
 
         circle2 = new figures::Circle(figures::Point(2, 0), 1);
         res = figures::intersection(*circle1, *circle2);
 
         //check circles are tangent
-                CHECK(res.size() == 1);
+        CHECK(res.size() == 1);
         point = (res[0].x() == 1 && res[0].y() == 0);
-                CHECK(point);
-
-
+        CHECK(point);
 
 
     }
-    void test_sym_display(){
+
+    void testIntersection() {
+
+        testLinesIntersection();
+        testLineCircleIntersection();
+        testCirclesIntersection();
+
+    }
+
+    //symmetric display
+    void testLineToLineDisplay(){
 
         auto* line1 = new figures::Line(1, 1, -1);
         auto* line2 = new figures::Line(-3, 1, 2);
@@ -76,26 +96,38 @@ namespace test_figures_functions{
         figures::Line res = figures::sym_display(*line1, *line2);
 
         //check symmetric display(lines intersects)
-                CHECK(res.a() / res.b() == double (-1) / 3);
-                CHECK(res.c() == 0);
+        CHECK(res.a() / res.b() == double (-1) / 3);
+        CHECK(res.c() == 0);
 
         line2 = new figures::Line(2, 2, -3);
 
         res = figures::sym_display(*line1, *line2);
         //check symmetric display(lines parallel)
-                CHECK(res.a() / res.b() == line1->a() / line1->b());
+        CHECK(res.a() / res.b() == line1->a() / line1->b());
 
+    }
+
+    void testCircleToLineDisplay(){
+
+        auto* line1 = new figures::Line(1, 1, -1);
         auto* circle1 = new figures::Circle(figures::Point(0, 0), 1);
 
         figures::Circle res1 = figures::sym_display(*line1, *circle1);
 
-                CHECK(res1.center().x() == 1);
-                CHECK(res1.center().y() == 1);
-
-
+        CHECK(res1.center().x() == 1);
+        CHECK(res1.center().y() == 1);
 
     }
-    void testCircleToCirlceInversion(){
+
+    void testSymDisplay(){
+
+        testLineToLineDisplay();
+        testCircleToLineDisplay();
+
+    }
+
+    //inversion
+    void testCircleToCircleInversion(){
 
         auto* circle1 = new figures::Circle(figures::Point(0, 0), 1);
         auto* to_invert = new figures::Circle(figures::Point(1, 1), 0.5);
@@ -130,7 +162,7 @@ namespace test_figures_functions{
 
     void testInversion(){
 
-        testCircleToCirlceInversion();
+        testCircleToCircleInversion();
         testLineToCircleInversion();
 
     }
@@ -139,9 +171,9 @@ namespace test_figures_functions{
 
 TEST_CASE("[figures] - checking all functions"){
 
-    test_figures_functions::test_intersection();
-    test_figures_functions::test_sym_display();
-    test_figures_functions::testInversion();
+    testFiguresFunctions::testIntersection();
+    testFiguresFunctions::testSymDisplay();
+    testFiguresFunctions::testInversion();
 
 
 }

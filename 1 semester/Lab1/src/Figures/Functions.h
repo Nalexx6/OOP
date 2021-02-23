@@ -41,7 +41,6 @@ namespace figures {
     //create inverted image of the circle(which does not cross center of the "inversion"-circle)
     static Circle inversion(Circle &circle, Circle &to_invert);
 
-
 }
 
 

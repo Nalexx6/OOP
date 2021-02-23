@@ -5,6 +5,7 @@
 
 #include "Functions.h"
 
+//auxiliary namespace to make contained within functions "private" for user
 namespace {
 
     double point_distance(figures::Point &a, figures::Point &b) {
@@ -15,11 +16,8 @@ namespace {
 
     figures::Point point_line_distance(figures::Point &point, figures::Line &line) {
 
-//    figures::Point res{};
-
         double x0 = (line.b() * (line.b() * point.x() - line.a() * point.y()) - line.a() * line.c())
                     / (pow(line.a(), 2) + pow(line.b(), 2));
-
         double y0 = (line.a() * (-line.b() * point.x() + line.a() * point.y()) - line.b() * line.c())
                     / (pow(line.a(), 2) + pow(line.b(), 2));
 
@@ -37,11 +35,6 @@ namespace {
 
         auto* center = new figures::Point(circle.center().x(), circle.center().y());
         figures::Line directive = build_line(*center, point);
-//    std::cout<<"center: x " << center->x << " y " << center->y <<std::endl;
-//    std::cout<<"directive: x " << directive._a() << " y " << directive._b() <<std::endl;
-
-
-
         double distance = pow(circle.radius(), 2) / point_distance(*center, point);
         double norm = sqrt(pow(distance, 2) / (pow(directive.a(), 2) + pow(directive.b(), 2)));
 
@@ -53,16 +46,11 @@ namespace {
         auto* first = new figures::Point(x1, y1);
         auto* second = new figures::Point(x2, y2);
 
-//    std::cout<<"first: x " << first->x << " y " << first->y <<std::endl;
-//    std::cout<<"second: x " << second->x << " y " << second->y <<std::endl;
-
         double first_dis = point_distance(*center, *first);
         double second_dis = point_distance(point, *first);
 
         if (first_dis > second_dis) {
-
             return *first;
-
         } else
             return *second;
 
@@ -76,9 +64,7 @@ std::vector<figures::Point> figures::intersection(Line &line1, Line &line2) {
     std::vector<Point> res;
 
     if(line1.a() / line1.b() == line2.a() / line2.b()){
-
         return res;
-
     }
 
     double x = - (line1.c() * line2.b() - line1.b() * line2.c()) / (line1.a() * line2.b() - line1.b() * line2.a());
@@ -95,40 +81,26 @@ std::vector<figures::Point> figures::intersection(Line &line, Circle &circle) {
     std::vector<Point> res;
 
     Point center = circle.center();
-
-//    std::cout<<"Center "<<center.x << " "<< center.y <<"\n";
-
-
     Point min = point_line_distance(center, line);
-
-//    std::cout<<"Nearest point "<<min.x << " "<< min.y <<"\n";
-
     double distance = point_distance(min, center);
 
     if(distance > circle.radius())
         return res;
-
     if(distance == circle.radius()){
-
         res.emplace_back(min);
         return res;
-
     }
 
     double x, y;
-    //    std::cout<<"distance "<< distance << "\n";
-
     double norm = sqrt( (pow(circle.radius(), 2) - pow(line.c(), 2) / ( pow(line.a(), 2) +
             pow(line.b(), 2))) / (pow(line.a(), 2) + pow(line.b(), 2)));
 
     x = min.x() + line.b() * norm;
     y = min.y() - line.a() * norm;
-
     res.emplace_back(Point(x, y));
 
     x = min.x() - line.b() * norm;
     y = min.y() + line.a() * norm;
-
     res.emplace_back(Point(x, y));
 
     return  res;
@@ -148,44 +120,26 @@ std::vector<figures::Point> figures::intersection(Circle &circle1, Circle &circl
 
 }
 
-
 figures::Line figures::sym_display(Line &line, Line &to_sym) {
-
 
     std::vector points = intersection(line, to_sym);
 
     if(points.empty()){
-
         return *new Line(to_sym.a(), to_sym.b(), 2 * to_sym.c() - to_sym.c());
-
     }
 
     if(line.a() == 0 || line.b() == 0){
-
         return *new Line(-to_sym.a(), to_sym.b(), to_sym.c());
-
     }
-
-//    std::cout<< "x " <<points[0].x<< " y " << points[0].y<<std::endl;
 
     auto* second = new Point(0, -to_sym.c() / to_sym.b());
-
     if(*second == points[0]){
-
         second = new Point(-to_sym.c() / to_sym.a(), 0);
-
     }
 
-//    std::cout<< "x " <<second->x<< " y " << second->y<<std::endl;
-
-
     Point min = point_line_distance(*second, line);
-
     auto* display = new Point(2 * min.x() - second->x(), 2 * min.y() - second->y());
 
-//    std::cout<< "x " <<display->x<< " y " << display->y<<std::endl;
-
-//    res = new Line(a, b, c);
     return build_line(*display, points[0]);
 
 }
@@ -205,11 +159,8 @@ figures::Circle figures::inversion(Circle &circle, Line &to_invert) {
 
     auto* center = new Point(circle.center().x(), circle.center().y());
     Point min = point_line_distance(*center, to_invert);
-//    std::cout<<"inverted: x " << min.x << " y " << min.y <<std::endl;
-
 
     Point inverted = image(circle, min);
-//    std::cout<<"inverted: x " << inverted.x << " y " << inverted.y <<std::endl;
 
     return *new Circle(Point((center->x() + inverted.x()) / 2, (center->y() + inverted.y()) / 2),
                        point_distance(*center, inverted) / 2);
@@ -232,7 +183,6 @@ figures::Line figures::inversion_cross(Circle &circle, Circle &to_invert) {
 
     return build_line(*first, *second);
 
-
 }
 
 figures::Circle figures::inversion(Circle &circle, Circle &to_invert) {
@@ -249,8 +199,3 @@ figures::Circle figures::inversion(Circle &circle, Circle &to_invert) {
     return *new Circle(Point(x, y), radius);
 
 }
-
-
-
-
-
