@@ -115,17 +115,16 @@ namespace test_figures_functions{
     void testLineToCircleInversion(){
 
         auto* circle1 = new figures::Circle(figures::Point(0, 0), 1);
-        auto* to_invert = new figures::Line(0, 1, -2);
+        auto* to_invert = new figures::Line(1, 1, 1);
 
         figures::Circle inverted = figures::inversion(*circle1, *to_invert);
 
         figures::Line invertedDouble = figures::inversion_cross(*circle1, inverted);
 
-                CHECK(to_invert->a() == invertedDouble.a());
-                CHECK(to_invert->b() == invertedDouble.b());
+        CHECK(to_invert->a() / to_invert->b() == invertedDouble.a() / invertedDouble.b());
+        CHECK(to_invert->c() / to_invert->b() == invertedDouble.c() / invertedDouble.b());
 
-        //this assertion will be failed if radius of to_invert circle is irrational number
-                CHECK(to_invert->c() == invertedDouble.c());
+
 
     }
 
