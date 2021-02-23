@@ -122,7 +122,7 @@ std::vector<figures::Point> figures::intersection(Circle &circle1, Circle &circl
 
 figures::Line figures::sym_display(Line &line, Line &to_sym) {
 
-    std::vector points = intersection(line, to_sym);
+    std::vector<figures::Point> points = intersection(line, to_sym);
 
     if(points.empty()){
         return *new Line(to_sym.a(), to_sym.b(), 2 * to_sym.c() - to_sym.c());
