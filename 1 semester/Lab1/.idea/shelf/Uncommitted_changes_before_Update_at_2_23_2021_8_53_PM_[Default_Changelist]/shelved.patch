@@ -1,0 +1,99 @@
+Index: ../../2 semester/libCreationTest/MyStaticLib/MyStaticLib.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../../2 semester/libCreationTest/MyStaticLib/MyStaticLib.cpp	(date 1614016067536)
++++ ../../2 semester/libCreationTest/MyStaticLib/MyStaticLib.cpp	(date 1614016067536)
+@@ -0,0 +1,20 @@
++
++
++//
++// Created by nalexx on 20.02.21.
++//
++
++#include "MyStaticLib.h"
++
++int myLib::MyStaticLib::sum(int a, int b) {
++    return a + b;
++}
++
++int myLib::MyStaticLib::multiply(int a, int b) {
++
++    return a*b;
++}
++
++int myLib::sub(int a, int b) {
++    return a-b;
++}
+Index: ../../2 semester/libCreationTest/MyStaticLib/MyStaticLib.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../../2 semester/libCreationTest/MyStaticLib/MyStaticLib.h	(date 1614016067555)
++++ ../../2 semester/libCreationTest/MyStaticLib/MyStaticLib.h	(date 1614016067555)
+@@ -0,0 +1,23 @@
++//
++// Created by nalexx on 20.02.21.
++//
++
++#ifndef LIBCREATIONTEST_MYSTATICLIB_H
++#define LIBCREATIONTEST_MYSTATICLIB_H
++
++namespace myLib {
++
++    int sub(int a, int b);
++
++    class MyStaticLib {
++
++    public:
++
++        static int multiply(int a, int b);
++
++        static int sum(int a, int b);
++
++    };
++
++}
++#endif //LIBCREATIONTEST_MYSTATICLIB_H
+Index: ../../2 semester/libCreationTest/.idea/libCreationTest.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../../2 semester/libCreationTest/.idea/libCreationTest.iml	(date 1613847567006)
++++ ../../2 semester/libCreationTest/.idea/libCreationTest.iml	(date 1613847567006)
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module classpath="CMake" type="CPP_MODULE" version="4" />
+\ No newline at end of file
+Index: ../../2 semester/LibTest/.idea/LibTest.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../../2 semester/LibTest/.idea/LibTest.iml	(date 1613985630933)
++++ ../../2 semester/LibTest/.idea/LibTest.iml	(date 1613985630933)
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module classpath="CMake" type="CPP_MODULE" version="4" />
+\ No newline at end of file
+Index: ../../2 semester/libCreationTest/MyStaticLib/CMakeLists.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../../2 semester/libCreationTest/MyStaticLib/CMakeLists.txt	(date 1613854494077)
++++ ../../2 semester/libCreationTest/MyStaticLib/CMakeLists.txt	(date 1613854494077)
+@@ -0,0 +1,9 @@
++cmake_minimum_required (VERSION 3.8)
++
++project(MyStaticLib)
++
++set(SOURCE_FILES "MyStaticLib.cpp")
++set(HEADER_FILES "MyStaticLib.h")
++
++# We declare the project as a static library and add all the source code files to it.
++add_library(MyStaticLib STATIC ${HEADER_FILES} ${SOURCE_FILES})
+\ No newline at end of file
