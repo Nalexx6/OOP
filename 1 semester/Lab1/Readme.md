@@ -25,5 +25,9 @@ Version 2.0(Refactored as 2 semester Lab1)
 
 * Figures folder is now independent library. Source code of it: https://github.com/Nalexx6/Figures
 
+* Unit test have become more clean and understandable after refactoring
+
+* Version 1.0 accessible by repository releases(tag v1.0) or by this link:https://github.com/Nalexx6/OOP/tree/b1d5b04401c44c50e0db55dd0c7b42acbaf3ab2e/1%20semester/Lab1
+
 * Doxygen documentation provided: https://nalexx6.github.io/OOP/1%20semester/Lab1/doc/html/index.html
 
