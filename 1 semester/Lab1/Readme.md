@@ -25,5 +25,5 @@ Version 2.0(Refactored as 2 semester Lab1)
 
 * Figures folder is now independent library. Source code of it: https://github.com/Nalexx6/Figures
 
-* Doxygen documentation provided: https://nalexx6.github.io/OOP/1 semester/Lab1/doc/html/index.html
+* Doxygen documentation provided: https://nalexx6.github.io/OOP/1%20semester/Lab1/doc/html/index.html
 
