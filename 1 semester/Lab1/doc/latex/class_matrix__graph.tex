@@ -1,0 +1,243 @@
+\hypertarget{class_matrix__graph}{}\doxysection{Matrix\+\_\+graph$<$ V, E $>$ Class Template Reference}
+\label{class_matrix__graph}\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+
+
+{\ttfamily \#include $<$Matrix\+\_\+graph.\+h$>$}
+
+Inheritance diagram for Matrix\+\_\+graph$<$ V, E $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_matrix__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_matrix__graph_a79e6eac631a5c15dd742b73bd12db437}{Matrix\+\_\+graph}} ()
+\item 
+\mbox{\hyperlink{class_matrix__graph_ae04b8632e579610c94b0df9785704dae}{Matrix\+\_\+graph}} (const bool \&directed, const bool \&weighted)
+\item 
+\mbox{\hyperlink{class_matrix__graph_a2d906e1c67908f5a2213f753d936a68c}{$\sim$\+Matrix\+\_\+graph}} ()=default
+\item 
+bool \mbox{\hyperlink{class_matrix__graph_a0582980435ed47185cf1e6ee725c5b8c}{empty}} ()
+\item 
+std\+::vector$<$ V $>$ \mbox{\hyperlink{class_matrix__graph_a3ec3e6b73a7c440d7b47947ead141c60}{\+\_\+vertices}} ()
+\item 
+int \mbox{\hyperlink{class_matrix__graph_ab1697d19eb9dbc4d4a7f22ac194ebecd}{\+\_\+edges}} ()
+\item 
+bool \mbox{\hyperlink{class_matrix__graph_a32976eb2351d37a4ceba61edd0f33888}{\+\_\+directed}} ()
+\item 
+bool \mbox{\hyperlink{class_matrix__graph_a3f60798747dbdb9f830a9b0409f17e51}{\+\_\+weighted}} ()
+\item 
+void \mbox{\hyperlink{class_matrix__graph_a615dc8d5436827f3ca910a3436471cad}{add\+\_\+vertex}} (const V \&vertex)
+\item 
+void \mbox{\hyperlink{class_matrix__graph_a5b55befb9f40d0320262994da323fa30}{delete\+\_\+vertex}} (const V \&vertex)
+\item 
+void \mbox{\hyperlink{class_matrix__graph_ab6bfbc96a94b280fcc43403e4e18ee0c}{add\+\_\+edge}} (const int \&from, const int \&to, E edge)
+\item 
+void \mbox{\hyperlink{class_matrix__graph_ad0b06e389107171c689a9ee6ec60a057}{delete\+\_\+edge}} (const int \&from, const int \&to)
+\item 
+void \mbox{\hyperlink{class_matrix__graph_a972c9ec3efe3fd587529c4837b9f2f1c}{clear}} ()
+\item 
+void \mbox{\hyperlink{class_matrix__graph_aee84558fadec587304141278b7908bd9}{print}} ()
+\item 
+int \mbox{\hyperlink{class_matrix__graph_a71d43ecc9e861612e1d665acd1c1e2ab}{dfs}} ()
+\item 
+int \mbox{\hyperlink{class_matrix__graph_a05c81b04abbaa957a163762a32c46f3e}{bfs}} ()
+\item 
+int \mbox{\hyperlink{class_matrix__graph_af77ec3efb7f46fa5a8a257241b7f7add}{acyclicity}} ()
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_matrix__graph_a66af0cf66f02845bf85e76579624b430}{dijkstra\+\_\+distance}} (const int \&from, const int \&to)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_matrix__graph_a79e6eac631a5c15dd742b73bd12db437}\label{class_matrix__graph_a79e6eac631a5c15dd742b73bd12db437}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!Matrix\_graph@{Matrix\_graph}}
+\index{Matrix\_graph@{Matrix\_graph}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix\_graph()}{Matrix\_graph()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+\mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::\mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_matrix__graph_ae04b8632e579610c94b0df9785704dae}\label{class_matrix__graph_ae04b8632e579610c94b0df9785704dae}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!Matrix\_graph@{Matrix\_graph}}
+\index{Matrix\_graph@{Matrix\_graph}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix\_graph()}{Matrix\_graph()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+\mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::\mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}} (\begin{DoxyParamCaption}\item[{const bool \&}]{directed,  }\item[{const bool \&}]{weighted }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{class_matrix__graph_a2d906e1c67908f5a2213f753d936a68c}\label{class_matrix__graph_a2d906e1c67908f5a2213f753d936a68c}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!````~Matrix\_graph@{$\sim$Matrix\_graph}}
+\index{````~Matrix\_graph@{$\sim$Matrix\_graph}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$Matrix\_graph()}{~Matrix\_graph()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+\mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::$\sim$\mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_matrix__graph_a32976eb2351d37a4ceba61edd0f33888}\label{class_matrix__graph_a32976eb2351d37a4ceba61edd0f33888}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!\_directed@{\_directed}}
+\index{\_directed@{\_directed}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{\_directed()}{\_directed()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+bool \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::\+\_\+directed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a60549971086b50f0c4a67e07fb33f03e}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_ab1697d19eb9dbc4d4a7f22ac194ebecd}\label{class_matrix__graph_ab1697d19eb9dbc4d4a7f22ac194ebecd}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!\_edges@{\_edges}}
+\index{\_edges@{\_edges}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{\_edges()}{\_edges()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+int \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::\+\_\+edges (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a2ae433c729db065d7cade5ee2eb6785a}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_a3ec3e6b73a7c440d7b47947ead141c60}\label{class_matrix__graph_a3ec3e6b73a7c440d7b47947ead141c60}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!\_vertices@{\_vertices}}
+\index{\_vertices@{\_vertices}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{\_vertices()}{\_vertices()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+std\+::vector$<$V$>$ \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::\+\_\+vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a0f73575f836516d9ac9e6cf796e8aaa6}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_a3f60798747dbdb9f830a9b0409f17e51}\label{class_matrix__graph_a3f60798747dbdb9f830a9b0409f17e51}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!\_weighted@{\_weighted}}
+\index{\_weighted@{\_weighted}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{\_weighted()}{\_weighted()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+bool \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::\+\_\+weighted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a1cbff26f22ab25f6f3743a323b9279a6}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_af77ec3efb7f46fa5a8a257241b7f7add}\label{class_matrix__graph_af77ec3efb7f46fa5a8a257241b7f7add}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!acyclicity@{acyclicity}}
+\index{acyclicity@{acyclicity}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{acyclicity()}{acyclicity()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+int \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::acyclicity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a216bc9e884337dda872ee775e21923b0}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_ab6bfbc96a94b280fcc43403e4e18ee0c}\label{class_matrix__graph_ab6bfbc96a94b280fcc43403e4e18ee0c}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!add\_edge@{add\_edge}}
+\index{add\_edge@{add\_edge}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{add\_edge()}{add\_edge()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+void \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::add\+\_\+edge (\begin{DoxyParamCaption}\item[{const int \&}]{from,  }\item[{const int \&}]{to,  }\item[{E}]{edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a781a9947dcfc7e2891c8524eed9aa48c}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_a615dc8d5436827f3ca910a3436471cad}\label{class_matrix__graph_a615dc8d5436827f3ca910a3436471cad}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!add\_vertex@{add\_vertex}}
+\index{add\_vertex@{add\_vertex}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{add\_vertex()}{add\_vertex()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+void \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::add\+\_\+vertex (\begin{DoxyParamCaption}\item[{const V \&}]{vertex }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_acd82701c6d846d2b5782cdf6dac29f1d}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_a05c81b04abbaa957a163762a32c46f3e}\label{class_matrix__graph_a05c81b04abbaa957a163762a32c46f3e}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!bfs@{bfs}}
+\index{bfs@{bfs}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{bfs()}{bfs()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+int \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::bfs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a5a51158576871a58acedc66824c2a10f}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_a972c9ec3efe3fd587529c4837b9f2f1c}\label{class_matrix__graph_a972c9ec3efe3fd587529c4837b9f2f1c}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!clear@{clear}}
+\index{clear@{clear}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+void \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_aec76454ce1b1d124a596b47ee2c9dae4}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_ad0b06e389107171c689a9ee6ec60a057}\label{class_matrix__graph_ad0b06e389107171c689a9ee6ec60a057}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!delete\_edge@{delete\_edge}}
+\index{delete\_edge@{delete\_edge}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{delete\_edge()}{delete\_edge()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+void \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::delete\+\_\+edge (\begin{DoxyParamCaption}\item[{const int \&}]{from,  }\item[{const int \&}]{to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_ad8679294f4b536eea525ed9ebbe93bb1}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_a5b55befb9f40d0320262994da323fa30}\label{class_matrix__graph_a5b55befb9f40d0320262994da323fa30}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!delete\_vertex@{delete\_vertex}}
+\index{delete\_vertex@{delete\_vertex}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{delete\_vertex()}{delete\_vertex()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+void \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::delete\+\_\+vertex (\begin{DoxyParamCaption}\item[{const V \&}]{vertex }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a1411d37975c915c217c9b097877a965d}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_a71d43ecc9e861612e1d665acd1c1e2ab}\label{class_matrix__graph_a71d43ecc9e861612e1d665acd1c1e2ab}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!dfs@{dfs}}
+\index{dfs@{dfs}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{dfs()}{dfs()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+int \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::dfs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_ab9df84a0547eea7b71e7f67d7a4379fb}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_a66af0cf66f02845bf85e76579624b430}\label{class_matrix__graph_a66af0cf66f02845bf85e76579624b430}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!dijkstra\_distance@{dijkstra\_distance}}
+\index{dijkstra\_distance@{dijkstra\_distance}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{dijkstra\_distance()}{dijkstra\_distance()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+std\+::vector$<$int$>$ \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::dijkstra\+\_\+distance (\begin{DoxyParamCaption}\item[{const int \&}]{from,  }\item[{const int \&}]{to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a6d43eeb205f021c40787ceeb0eac4f99}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_a0582980435ed47185cf1e6ee725c5b8c}\label{class_matrix__graph_a0582980435ed47185cf1e6ee725c5b8c}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!empty@{empty}}
+\index{empty@{empty}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+bool \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a1ee3cc1b8af1d7a23bc1d8cffe06d80b}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_matrix__graph_aee84558fadec587304141278b7908bd9}\label{class_matrix__graph_aee84558fadec587304141278b7908bd9}} 
+\index{Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}!print@{print}}
+\index{print@{print}!Matrix\_graph$<$ V, E $>$@{Matrix\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+void \mbox{\hyperlink{class_matrix__graph}{Matrix\+\_\+graph}}$<$ V, E $>$\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a0690678ffb1c0e4429d8ac53690637bd}{Graph$<$ V, E $>$}}.
+

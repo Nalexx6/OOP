@@ -1,0 +1,243 @@
+\hypertarget{class_list__graph}{}\doxysection{List\+\_\+graph$<$ V, E $>$ Class Template Reference}
+\label{class_list__graph}\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+
+
+{\ttfamily \#include $<$List\+\_\+graph.\+h$>$}
+
+Inheritance diagram for List\+\_\+graph$<$ V, E $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_list__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_list__graph_af5d194faba86b2f3f723d19be78576af}{List\+\_\+graph}} ()
+\item 
+\mbox{\hyperlink{class_list__graph_a8e0b8f42eaae48dc4b97ddb387ef7fbe}{List\+\_\+graph}} (const bool \&directed, const bool \&weighted)
+\item 
+\mbox{\hyperlink{class_list__graph_ab29049fb9275e2e3f47b66b36aa2b44d}{$\sim$\+List\+\_\+graph}} ()=default
+\item 
+bool \mbox{\hyperlink{class_list__graph_acb91422d372d5f03e96036b049b32355}{empty}} ()
+\item 
+std\+::vector$<$ V $>$ \mbox{\hyperlink{class_list__graph_aeeb000d6b44f2fc0325f3d29aa8ef307}{\+\_\+vertices}} ()
+\item 
+int \mbox{\hyperlink{class_list__graph_a7706cfaee18b5dbfffbfa7c8725fc197}{\+\_\+edges}} ()
+\item 
+bool \mbox{\hyperlink{class_list__graph_a26b3900553675e44f541bdafae60c599}{\+\_\+directed}} ()
+\item 
+bool \mbox{\hyperlink{class_list__graph_a43fa9e546783eeb7270ae274ede90b6e}{\+\_\+weighted}} ()
+\item 
+void \mbox{\hyperlink{class_list__graph_ac5ddda3bf7a13114a7956198a5344a24}{add\+\_\+vertex}} (const V \&vertex)
+\item 
+void \mbox{\hyperlink{class_list__graph_abfc994f40a693e0a8de87f0ee7c4d032}{delete\+\_\+vertex}} (const V \&vertex)
+\item 
+void \mbox{\hyperlink{class_list__graph_a50b6f9387d79cc0e2de8781e3d979e46}{add\+\_\+edge}} (const int \&from, const int \&to, E edge)
+\item 
+void \mbox{\hyperlink{class_list__graph_a09455d64daae967fb834dfec7243fe5e}{delete\+\_\+edge}} (const int \&from, const int \&to)
+\item 
+void \mbox{\hyperlink{class_list__graph_a29471f4fbfb366cd6ab3033f052c67ea}{clear}} ()
+\item 
+void \mbox{\hyperlink{class_list__graph_ab0b685a2a9eaefb33f3fc223289a75dd}{print}} ()
+\item 
+int \mbox{\hyperlink{class_list__graph_ac4663f5164d2980094d3dc0c0682983a}{dfs}} ()
+\item 
+int \mbox{\hyperlink{class_list__graph_a1ade7505715ff0fc835845dfd2ed3371}{bfs}} ()
+\item 
+int \mbox{\hyperlink{class_list__graph_a9832d7e9f79f0fc8516d72382306f96d}{acyclicity}} ()
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_list__graph_aba900c85d92b3dab543b5a3e5d30e155}{dijkstra\+\_\+distance}} (const int \&from, const int \&to)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_list__graph_af5d194faba86b2f3f723d19be78576af}\label{class_list__graph_af5d194faba86b2f3f723d19be78576af}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!List\_graph@{List\_graph}}
+\index{List\_graph@{List\_graph}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{List\_graph()}{List\_graph()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+\mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::\mbox{\hyperlink{class_list__graph}{List\+\_\+graph}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_list__graph_a8e0b8f42eaae48dc4b97ddb387ef7fbe}\label{class_list__graph_a8e0b8f42eaae48dc4b97ddb387ef7fbe}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!List\_graph@{List\_graph}}
+\index{List\_graph@{List\_graph}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{List\_graph()}{List\_graph()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+\mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::\mbox{\hyperlink{class_list__graph}{List\+\_\+graph}} (\begin{DoxyParamCaption}\item[{const bool \&}]{directed,  }\item[{const bool \&}]{weighted }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{class_list__graph_ab29049fb9275e2e3f47b66b36aa2b44d}\label{class_list__graph_ab29049fb9275e2e3f47b66b36aa2b44d}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!````~List\_graph@{$\sim$List\_graph}}
+\index{````~List\_graph@{$\sim$List\_graph}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$List\_graph()}{~List\_graph()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+\mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::$\sim$\mbox{\hyperlink{class_list__graph}{List\+\_\+graph}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_list__graph_a26b3900553675e44f541bdafae60c599}\label{class_list__graph_a26b3900553675e44f541bdafae60c599}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!\_directed@{\_directed}}
+\index{\_directed@{\_directed}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{\_directed()}{\_directed()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+bool \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::\+\_\+directed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a60549971086b50f0c4a67e07fb33f03e}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_a7706cfaee18b5dbfffbfa7c8725fc197}\label{class_list__graph_a7706cfaee18b5dbfffbfa7c8725fc197}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!\_edges@{\_edges}}
+\index{\_edges@{\_edges}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{\_edges()}{\_edges()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+int \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::\+\_\+edges (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a2ae433c729db065d7cade5ee2eb6785a}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_aeeb000d6b44f2fc0325f3d29aa8ef307}\label{class_list__graph_aeeb000d6b44f2fc0325f3d29aa8ef307}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!\_vertices@{\_vertices}}
+\index{\_vertices@{\_vertices}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{\_vertices()}{\_vertices()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+std\+::vector$<$V$>$ \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::\+\_\+vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a0f73575f836516d9ac9e6cf796e8aaa6}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_a43fa9e546783eeb7270ae274ede90b6e}\label{class_list__graph_a43fa9e546783eeb7270ae274ede90b6e}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!\_weighted@{\_weighted}}
+\index{\_weighted@{\_weighted}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{\_weighted()}{\_weighted()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+bool \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::\+\_\+weighted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a1cbff26f22ab25f6f3743a323b9279a6}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_a9832d7e9f79f0fc8516d72382306f96d}\label{class_list__graph_a9832d7e9f79f0fc8516d72382306f96d}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!acyclicity@{acyclicity}}
+\index{acyclicity@{acyclicity}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{acyclicity()}{acyclicity()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+int \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::acyclicity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a216bc9e884337dda872ee775e21923b0}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_a50b6f9387d79cc0e2de8781e3d979e46}\label{class_list__graph_a50b6f9387d79cc0e2de8781e3d979e46}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!add\_edge@{add\_edge}}
+\index{add\_edge@{add\_edge}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{add\_edge()}{add\_edge()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+void \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::add\+\_\+edge (\begin{DoxyParamCaption}\item[{const int \&}]{from,  }\item[{const int \&}]{to,  }\item[{E}]{edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a781a9947dcfc7e2891c8524eed9aa48c}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_ac5ddda3bf7a13114a7956198a5344a24}\label{class_list__graph_ac5ddda3bf7a13114a7956198a5344a24}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!add\_vertex@{add\_vertex}}
+\index{add\_vertex@{add\_vertex}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{add\_vertex()}{add\_vertex()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+void \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::add\+\_\+vertex (\begin{DoxyParamCaption}\item[{const V \&}]{vertex }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_acd82701c6d846d2b5782cdf6dac29f1d}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_a1ade7505715ff0fc835845dfd2ed3371}\label{class_list__graph_a1ade7505715ff0fc835845dfd2ed3371}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!bfs@{bfs}}
+\index{bfs@{bfs}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{bfs()}{bfs()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+int \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::bfs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a5a51158576871a58acedc66824c2a10f}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_a29471f4fbfb366cd6ab3033f052c67ea}\label{class_list__graph_a29471f4fbfb366cd6ab3033f052c67ea}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!clear@{clear}}
+\index{clear@{clear}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+void \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_aec76454ce1b1d124a596b47ee2c9dae4}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_a09455d64daae967fb834dfec7243fe5e}\label{class_list__graph_a09455d64daae967fb834dfec7243fe5e}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!delete\_edge@{delete\_edge}}
+\index{delete\_edge@{delete\_edge}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{delete\_edge()}{delete\_edge()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+void \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::delete\+\_\+edge (\begin{DoxyParamCaption}\item[{const int \&}]{from,  }\item[{const int \&}]{to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_ad8679294f4b536eea525ed9ebbe93bb1}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_abfc994f40a693e0a8de87f0ee7c4d032}\label{class_list__graph_abfc994f40a693e0a8de87f0ee7c4d032}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!delete\_vertex@{delete\_vertex}}
+\index{delete\_vertex@{delete\_vertex}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{delete\_vertex()}{delete\_vertex()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+void \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::delete\+\_\+vertex (\begin{DoxyParamCaption}\item[{const V \&}]{vertex }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a1411d37975c915c217c9b097877a965d}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_ac4663f5164d2980094d3dc0c0682983a}\label{class_list__graph_ac4663f5164d2980094d3dc0c0682983a}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!dfs@{dfs}}
+\index{dfs@{dfs}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{dfs()}{dfs()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+int \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::dfs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_ab9df84a0547eea7b71e7f67d7a4379fb}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_aba900c85d92b3dab543b5a3e5d30e155}\label{class_list__graph_aba900c85d92b3dab543b5a3e5d30e155}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!dijkstra\_distance@{dijkstra\_distance}}
+\index{dijkstra\_distance@{dijkstra\_distance}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{dijkstra\_distance()}{dijkstra\_distance()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+std\+::vector$<$int$>$ \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::dijkstra\+\_\+distance (\begin{DoxyParamCaption}\item[{const int \&}]{from,  }\item[{const int \&}]{to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a6d43eeb205f021c40787ceeb0eac4f99}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_acb91422d372d5f03e96036b049b32355}\label{class_list__graph_acb91422d372d5f03e96036b049b32355}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!empty@{empty}}
+\index{empty@{empty}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+bool \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a1ee3cc1b8af1d7a23bc1d8cffe06d80b}{Graph$<$ V, E $>$}}.
+
+\mbox{\Hypertarget{class_list__graph_ab0b685a2a9eaefb33f3fc223289a75dd}\label{class_list__graph_ab0b685a2a9eaefb33f3fc223289a75dd}} 
+\index{List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}!print@{print}}
+\index{print@{print}!List\_graph$<$ V, E $>$@{List\_graph$<$ V, E $>$}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily template$<$typename V , typename E $>$ \\
+void \mbox{\hyperlink{class_list__graph}{List\+\_\+graph}}$<$ V, E $>$\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_graph_a0690678ffb1c0e4429d8ac53690637bd}{Graph$<$ V, E $>$}}.
+
