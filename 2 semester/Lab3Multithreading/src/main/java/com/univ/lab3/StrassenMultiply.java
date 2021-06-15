@@ -156,7 +156,9 @@ public class StrassenMultiply {
         return resized;
     }
 
-
+    /**
+     *  Simple Strassen step implementation
+     */
     private static Matrix<Integer> strassen(Matrix<Integer> matrix1, Matrix<Integer> matrix2){
         if(matrix1.getPower() != matrix2.getPower()){
             throw new IllegalArgumentException();
@@ -240,6 +242,9 @@ public class StrassenMultiply {
         return res;
     }
 
+    /**
+     *  Multithreaded Strassen step implementation
+     */
     private static Matrix<Integer> strassenMultiThreaded(Matrix<Integer> matrix1, Matrix<Integer> matrix2){
         if(matrix1.getPower() != matrix2.getPower()){
             throw new IllegalArgumentException();
@@ -331,6 +336,9 @@ public class StrassenMultiply {
         return res;
     }
 
+    /**
+     * Self made class to perform Strassen step in separate thread
+     */
     private static class MyThread extends Thread{
 
         private final Matrix<Integer> matrix1;
