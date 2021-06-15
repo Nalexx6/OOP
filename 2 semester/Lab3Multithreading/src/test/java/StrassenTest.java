@@ -9,20 +9,29 @@ import java.security.SecureRandom;
 public class StrassenTest {
 
     private static final SecureRandom RANDOM = new SecureRandom();
-
     @Test
     public void multiplyingTest(){
-        Matrix<Integer> matrix1 = new Matrix<>(1000);
+        Matrix<Integer> matrix1 = new Matrix<>(200);
         fillRandom(matrix1, 10);
 //        matrix1.print();
 
-
-        Matrix<Integer> simpleRes = StrassenMultiply.multiply(matrix1, matrix1);
+        long start = System.nanoTime();
+//        Matrix<Integer> simpleRes = StrassenMultiply.multiply(matrix1, matrix1);
+        long end = System.nanoTime();
 //        simpleRes.print();
-        Matrix<Integer> strassenRes = StrassenMultiply.strassenMultiplication(matrix1, matrix1);
+//        System.out.println("Simple: " + (end - start) / 1000000 + " ms");
+        start = System.nanoTime();
+        Matrix<Integer> strassenRes = StrassenMultiply.strassenMultiplication(matrix1, matrix1, false);
+        end = System.nanoTime();
+        System.out.println("Strassen: " + (end - start) / 1000000 + " ms");
+        start = System.nanoTime();
+        Matrix<Integer> strassenMultiRes = StrassenMultiply.strassenMultiplication(matrix1, matrix1, true);
+        end = System.nanoTime();
+        System.out.println("Strassen Multithreaded: " + (end - start) / 1000000 + " ms");
 //        strassenRes.print();
 
-        assertEquals(simpleRes, strassenRes);
+//        assertEquals(simpleRes, strassenRes);
+        assertEquals(strassenRes, strassenMultiRes);
     }
 
     public void fillRandom(Matrix<Integer> matrix, int bound){
